@@ -1072,7 +1072,7 @@ void processWifiMqttClient()
       //CONSOLE.println("MQTT: publishing " MQTT_TOPIC_PREFIX "/status");      
       MQTT_PUBLISH(stateOpText.c_str(), "%s", "/op")
       MQTT_PUBLISH(maps.percentCompleted, "%d", "/progress")
-      if( stateOpText.c_str() == 'dock') {
+      if( strcmp(stateOpText.c_str(), 'dock') ) {
         MQTT_PUBLISH(rainDriver.triggered() ? "raining" : battery.shouldGoHome() ? "battery-low" : "user-request", "%s", "/docking")
       } else {
         MQTT_PUBLISH("-", "%s", "/docking")
