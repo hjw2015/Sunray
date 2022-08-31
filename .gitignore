@@ -1,1 +1,3 @@
 alfred/build/**
+build/**
+.vscode/**

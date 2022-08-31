@@ -34,8 +34,8 @@ boolean mqttHelper::publish(const char* topic, Map& map) {
             Point p = map.perimeterPoints.points[i];
             ss << p.x() << "," << p.y() << " ";
         }
-        std::string r = ss.str();
-        lastMapCRC = map.mapCRC;
+        std::string r = ss.str();        
+        lastMapCRC = map.mapCRC;        
         return publish(t.append("/perimeter"), r);
     } else {
         return false;
