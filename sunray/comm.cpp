@@ -15,7 +15,7 @@
   #include "src/esp/WiFiEsp.h"
 #endif
 #include "RingBuffer.h"
-
+#include "mqttHelper.h"
 //#define VERBOSE 1
 
 unsigned long nextInfoTime = 0;
@@ -1060,13 +1060,19 @@ void mqttCallback(char* topic, byte* payload, unsigned int length) {
       mqttClient.publish(MQTT_TOPIC_PREFIX TOPIC, mqttMsg);    
 
 
+mqttHelper mqtthelper;
+
 // process MQTT input/output (subcriber/publisher)
 void processWifiMqttClient()
 {
   if (!ENABLE_MQTT) return; 
+  if(!mqtthelper.isInitialized()){
+    mqtthelper = mqttHelper(mqttClient, std::string(MQTT_TOPIC_PREFIX).c_str());
+  }
   if (millis() >= nextPublishTime){
     nextPublishTime = millis() + 10000;
     if (mqttClient.connected()) {
+      mqtthelper.publish("/map", maps);
       updateStateOpText();
       // operational state
       //CONSOLE.println("MQTT: publishing " MQTT_TOPIC_PREFIX "/status");      
@@ -1088,6 +1094,8 @@ void processWifiMqttClient()
       MQTT_PUBLISH((millis()-gps.dgpsAge)/1000.0, "%.2f","/gps/ageDGPS")
       MQTT_PUBLISH(gps.accuracy, "%.2f", "/gps/accuracy")
       MQTT_PUBLISH(gps.groundSpeed, "%.4f", "/gps/groundSpeed")
+      MQTT_PUBLISH(gps.numSV, "%d", "/gps/visibleSatelitesMower")
+      MQTT_PUBLISH(gps.numSVdgps, "%d", "/gps/visibleSatelitesBasestation")
       
       // power related information      
       MQTT_PUBLISH(battery.batteryVoltage, "%.2f", "/power/battery/voltage")
