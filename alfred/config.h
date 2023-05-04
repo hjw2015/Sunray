@@ -148,7 +148,7 @@ Also, you may choose the serial port below for serial monitor output (CONSOLE).
 
 #define MOTOR_FAULT_CURRENT 3.0    // gear motors fault current (amps)
 #define MOTOR_TOO_LOW_CURRENT 0.005   // gear motor too low current (amps), set to zero (0) to disable
-#define MOTOR_OVERLOAD_CURRENT 1.0    // gear motors overload current (amps)
+#define MOTOR_OVERLOAD_CURRENT 1.2    // gear motors overload current (amps)
 
 //#define USE_LINEAR_SPEED_RAMP  true      // use a speed ramp for the linear speed
 #define USE_LINEAR_SPEED_RAMP  false      // do not use a speed ramp 
@@ -172,7 +172,7 @@ Also, you may choose the serial port below for serial monitor output (CONSOLE).
 
 #define MOW_FAULT_CURRENT 8.0       // mowing motor fault current (amps)
 #define MOW_TOO_LOW_CURRENT 0.005   // mowing motor too low current (amps) , set to zero (0) to disable
-#define MOW_OVERLOAD_CURRENT 2.0    // mowing motor overload current (amps)
+#define MOW_OVERLOAD_CURRENT 2.5    // mowing motor overload current (amps)
 
 // should the direction of mowing motor toggle each start? (yes: true, no: false)
 #define MOW_TOGGLE_DIR       true
