@@ -305,14 +305,14 @@ void computeRobotState()
     {
       // Test: continue to use odometry data if float
       // further ideas: 
-      //  * store last fix values and allow up to x meters distance with odometry only
+      //  * store last fix values and allow up to x meters distance with odometry only  => does not work
       //  * update float position only if GPS distance below threshold and in reasonable distance to last fix point
       // // float
-      // if (maps.useGPSfloatForPosEstimation)
-      // { // allows planner to use float solution?
-      //   stateX = posE;
-      //   stateY = posN;
-      // }
+      if (maps.useGPSfloatForPosEstimation and gps.accuracy < 0.05)
+      { // allows planner to use float solution?
+        stateX = posE;
+        stateY = posN;
+      }
     }
   }
 
