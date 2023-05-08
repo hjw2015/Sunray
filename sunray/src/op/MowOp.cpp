@@ -68,7 +68,9 @@ void MowOp::begin(){
             stateSensor = SENS_MAP_NO_ROUTE;
             changeOp(errorOp);      
         } else {    
-        changeOp(gpsRebootRecoveryOp, true);
+        if(gps.solution < 2){
+            changeOp(gpsRebootRecoveryOp, true);
+        }
         }
     } else {
         lastMapRoutingFailed = false;
