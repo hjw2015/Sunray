@@ -201,6 +201,8 @@ class KidnapWaitOp: public Op {
 class GpsRebootRecoveryOp: public Op {
   public:
     unsigned long retryOperationTime;
+    unsigned long retryLastRestartTime = 0L;
+    unsigned short consecutiveRestarts = 1;
     virtual String name() override;
     virtual void begin() override;
     virtual void end() override;

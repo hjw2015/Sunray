@@ -15,7 +15,14 @@ String GpsRebootRecoveryOp::name(){
 void GpsRebootRecoveryOp::begin(){
     // try GPS reboot after 5 minutes
     if (GPS_REBOOT_RECOVERY){
-        gps.reboot();  // try to recover from false GPS fix
+        // avoid continuous reboot of the GPS receiver by extending reboot time if it happens to quick
+        if(millis() > 40000*consecutiveRestarts + retryLastRestartTime) {
+            gps.reboot();  // try to recover from false GPS fix
+            retryLastRestartTime = millis();    
+            consecutiveRestarts = 1;
+        } else {
+            consecutiveRestarts = consecutiveRestarts < 3 ? consecutiveRestarts++ : 3;
+        }
     }
     retryOperationTime = millis() + 30000; // wait 30 secs after reboot, then try another map routing
 }
