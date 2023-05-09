@@ -237,8 +237,8 @@ bool UBLOX::configure(){
 
 void UBLOX::reboot(){
   CONSOLE.println("rebooting GPS receiver...");
-  //configGPS.hardReset();
-  configGPS.GNSSRestart();
+  configGPS.hardReset();
+  //configGPS.GNSSRestart();
 }
 
 void UBLOX::parse(int b)
