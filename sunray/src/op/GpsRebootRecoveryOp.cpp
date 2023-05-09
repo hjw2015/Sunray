@@ -13,14 +13,17 @@ String GpsRebootRecoveryOp::name(){
 }
 
 void GpsRebootRecoveryOp::begin(){
-    // try GPS reboot after 5 minutes
     if (GPS_REBOOT_RECOVERY){
         // avoid continuous reboot of the GPS receiver by extending reboot time if it happens to quick
-        if(millis() > 40000*consecutiveRestarts + retryLastRestartTime) {
-            gps.reboot();  // try to recover from false GPS fix
-            retryLastRestartTime = millis();    
+        // reset counter if we really had at least 5min of operation
+        if(millis() > 300000 + retryLastRestartTime) {
             consecutiveRestarts = 1;
-        } else {
+        }
+        // check if we repeatedly reboot the GPS system and allow 35s more recovery time if it happens just too quick
+        if(millis() > 35000*consecutiveRestarts + retryLastRestartTime) {
+            gps.reboot();  // try to recover from false GPS fix
+            retryLastRestartTime = millis();
+            // increment delay for next reboot
             consecutiveRestarts = consecutiveRestarts < 3 ? consecutiveRestarts++ : 3;
         }
     }

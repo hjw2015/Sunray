@@ -68,9 +68,10 @@ void MowOp::begin(){
             stateSensor = SENS_MAP_NO_ROUTE;
             changeOp(errorOp);      
         } else {    
-        if(gps.solution < 2){
-            changeOp(gpsRebootRecoveryOp, true);
-        }
+            // permanent reboots in case of failed routing are no solution if we have a fix GPS signal
+            if(gps.solution < 2){
+                changeOp(gpsRebootRecoveryOp, true);
+            }
         }
     } else {
         lastMapRoutingFailed = false;
