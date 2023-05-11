@@ -40,6 +40,7 @@ void GpsWaitFloatOp::run(){
     }     
     // reboot GPS every 60s if no change
     if(millis() > gpsReinitTime){
+        Console.print("GPSWaitFloat: Rebooting GPS...");
         gps.reboot();
         gpsReinitTime = millis() + 60000;
     }
