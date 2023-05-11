@@ -97,7 +97,10 @@ void ChargeOp::run(){
                 }
             }
         }
-    }        
+    }     
+    if(gps.solution < 1) {
+        onGpsNoSignal();
+    }
 }
 
 void ChargeOp::onChargerDisconnected(){
@@ -143,3 +146,11 @@ void ChargeOp::onRainTriggered(){
         //CONSOLE.println(dockOp.dockReasonRainAutoStartTime);
     }
 }
+
+void ChargeOp::onGpsNoSignal(){
+    if (!maps.isUndocking()){
+        stateSensor = SENS_GPS_INVALID;
+        changeOp(gpsWaitFloatOp, true);
+    }
+};
+

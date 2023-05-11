@@ -181,6 +181,7 @@ class ChargeOp: public Op {
     virtual void onBatteryUndervoltage() override;    
     virtual void onRainTriggered() override;   
     virtual void onChargerConnected() override; 
+    virtual void onGpsNoSignal() override; 
 };
 
 // wait for undo kidnap (gps jump) 
@@ -219,8 +220,9 @@ class GpsWaitFixOp: public Op {
 };
 
 // wait for gps signal (float or fix)
-class GpsWaitFloatOp: public Op {
+class GpsWaitFloatOp: public Op {  
   public:
+    unsigned long gpsReinitTime;
     virtual String name() override;
     virtual void begin() override;
     virtual void end() override;
