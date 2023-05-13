@@ -25,6 +25,11 @@ float stateGroundSpeed = 0; // m/s
 unsigned long stateLeftTicks = 0;
 unsigned long stateRightTicks = 0;
 
+// for ticks per cm estimation
+unsigned long lastFixLeftTicks = 0;
+unsigned long lastFixRightTicks = 0;
+float newTicksPerCm = -1.0;
+
 float lastPosN = 0;
 float lastPosE = 0;
 
@@ -211,6 +216,32 @@ void resetImuTimeout()
   imuDataTimeout = millis() + 10000;
 }
 
+void estimateTicksPerCm() {
+    // initialize
+    if(newTicksPerCm == -1.0) newTicksPerCm = motor.ticksPerCm;
+    // store the last valid
+    if(gps.solution == SOL_FIXED) {
+      float posN = gps.relPosN;
+      float posE = gps.relPosE;
+      float distGPS = sqrt(sq(posN - lastPosN) + sq(posE - lastPosE));
+
+      long leftDelta = motor.motorLeftTicks - lastFixLeftTicks;
+      long rightDelta = motor.motorRightTicks - lastFixRightTicks;
+      lastFixLeftTicks = motor.motorLeftTicks;
+      lastFixRightTicks = motor.motorRightTicks;
+
+      float distLeft = ((float)leftDelta) / ((float)motor.ticksPerCm);
+      float distRight = ((float)rightDelta) / ((float)motor.ticksPerCm);
+      float distOdometry = (distLeft + distRight) / 2.0;
+      
+      float estimatedTicksPerCm = (float)(leftDelta + rightDelta) / 2.0 / distGPS;
+      
+      newTicksPerCm = 0.9 * newTicksPerCm + 0.1 * estimatedTicksPerCm;
+      Console.print("Updated Ticks per Cm: "); 
+      Console.println(newTicksPerCm);
+    }
+}
+
 // compute robot state (x,y,delta)
 // uses complementary filter ( https://gunjanpatel.wordpress.com/2016/07/07/complementary-filter-design/ )
 // to fusion GPS heading (long-term) and IMU heading (short-term)
@@ -300,6 +331,7 @@ void computeRobotState()
         stateX = posE;
         stateY = posN;
       }
+      estimateTicksPerCm();
     }
     else
     {
