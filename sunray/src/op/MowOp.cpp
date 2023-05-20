@@ -91,6 +91,11 @@ void MowOp::run(){
     trackLine(true); 
     detectSensorMalfunction();    
     battery.resetIdle();
+    // keep a log for reverting in case of lost GPS signal
+    if(gps.solution == SOL_FIXED){
+        // new fix starting point for next commands
+        motor.lastPwmCommands.flush();
+    }
 }
 
 void MowOp::onRainTriggered(){

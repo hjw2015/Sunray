@@ -8,7 +8,7 @@
 #include "helper.h"
 #include "robot.h"
 #include "Arduino.h"
-
+#include "motorstack.h"
 
 void Motor::begin() {
 	pwmMax = 255;
@@ -547,6 +547,12 @@ void Motor::control(){
   }
 
   speedPWM(motorLeftPWMCurr, motorRightPWMCurr, motorMowPWMCurr);
+  
+  // store the next operation for reverting (max. 5 sec)
+  struct MotorStack::pwm p = { .left = motorLeftPWMCurr, .right = motorRightPWMCurr, .timestamp=millis() };
+  lastPwmCommands.push(p);
+  CONSOLE.print("CmdStack length=");
+  CONSOLE.println(lastPwmCommands.size());
   /*if ((motorLeftPWMCurr != 0) || (motorRightPWMCurr != 0)){
     CONSOLE.print("PID curr=");
     CONSOLE.print(motorLeftRpmCurr);
@@ -714,4 +720,31 @@ void Motor::plot(){
   }
   speedPWM(0, 0, 0);
   CONSOLE.println("motor plot done - please ignore any IMU/GPS errors");
+}
+
+void Motor::revert()
+{
+  bool start = true;
+  MotorStack::pwm lastStep;
+  while(!lastPwmCommands.isEmpty()){
+    if(start) {
+      // no real chance to replay the last step
+      MotorStack::pwm lastStep = lastPwmCommands.pop();
+      start = false;
+    }
+    MotorStack::pwm nextStep = lastPwmCommands.pop();
+    long deltaTime = nextStep.timestamp - lastStep.timestamp;
+    long endTime = millis() +  deltaTime;
+    CONSOLE.print("MOTOR Reverting for ");
+    CONSOLE.print(deltaTime);
+    CONSOLE.print("ms; Left=");
+    CONSOLE.print(-nextStep.left);
+    CONSOLE.print("%; Right=");
+    CONSOLE.print(-nextStep.left);
+    CONSOLE.println("%");
+    while(endTime > millis()){
+      speedPWM(-nextStep.left, -nextStep.right, 0);
+    }
+    lastStep = nextStep;
+  }
 }

@@ -7,7 +7,7 @@
 #define MOTOR_H
 
 #include "pid.h"
-
+#include "motorstack.h"
 
 // selected motor
 enum MotorSelect {MOTOR_LEFT, MOTOR_RIGHT, MOTOR_MOW} ;
@@ -55,10 +55,12 @@ class Motor {
     float motorRightSenseLPNorm;
     unsigned long motorMowSpinUpTime;
     bool motorRecoveryState;    
+    MotorStack lastPwmCommands; 
     void begin();
     void run();      
     void test();
     void plot();
+    void revert();
     void enableTractionMotors(bool enable);
     void setLinearAngularSpeed(float linear, float angular, bool useLinearRamp = true);
     void setMowState(bool switchOn);   

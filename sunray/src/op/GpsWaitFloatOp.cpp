@@ -44,6 +44,10 @@ void GpsWaitFloatOp::run(){
         gps.reboot();
         gpsReinitTime = millis() + 60000;
     }
+
+    if(!motor.lastPwmCommands.isEmpty()) {
+        motor.revert();
+    }
 }
 
 
