@@ -217,6 +217,9 @@ void resetImuTimeout()
   imuDataTimeout = millis() + 10000;
 }
 
+// Estimate the wheel diameter and adjust if necessary. Use the configured value as starting point.
+// Especially with mounting spikes or having mud baked on the wheels there seems to be some difference.
+// This should help to do a better navigation job based on motor ticks if there is no GPS signal available.
 void estimateTicksPerCm() {
     // initialize
     if(newTicksPerCm == -1.0) newTicksPerCm = motor.ticksPerCm;
