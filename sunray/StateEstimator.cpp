@@ -220,38 +220,47 @@ void resetImuTimeout()
 // Estimate the wheel diameter and adjust if necessary. Use the configured value as starting point.
 // Especially with mounting spikes or having mud baked on the wheels there seems to be some difference.
 // This should help to do a better navigation job based on motor ticks if there is no GPS signal available.
-void estimateTicksPerCm() {
-    // initialize
-    if(newTicksPerCm == -1.0) newTicksPerCm = motor.ticksPerCm;
-    // store the last valid
-    if(gps.solution == SOL_FIXED) {
-      // skip this cycle if we had a disturbed signal
-      if(undisturbedFix) {
-        float posN = gps.relPosN;
-        float posE = gps.relPosE;
-        float distGPS = sqrt(sq(posN - lastPosN) + sq(posE - lastPosE));
+void estimateTicksPerCm()
+{
+  // initialize
+  if (newTicksPerCm == -1.0)
+    newTicksPerCm = motor.ticksPerCm;
+  // store the last valid
+  if (gps.solution == SOL_FIXED)
+  {
+    // skip this cycle if we had a disturbed signal
+    if (undisturbedFix)
+    {
+      float posN = gps.relPosN;
+      float posE = gps.relPosE;
+      float distGPS = sqrt(sq(posN - lastPosN) + sq(posE - lastPosE));
 
-        long leftDelta = motor.motorLeftTicks - lastFixLeftTicks;
-        long rightDelta = motor.motorRightTicks - lastFixRightTicks;
-        lastFixLeftTicks = motor.motorLeftTicks;
-        lastFixRightTicks = motor.motorRightTicks;
+      long leftDelta = motor.motorLeftTicks - lastFixLeftTicks;
+      long rightDelta = motor.motorRightTicks - lastFixRightTicks;
+      lastFixLeftTicks = motor.motorLeftTicks;
+      lastFixRightTicks = motor.motorRightTicks;
 
-        float distLeft = ((float)leftDelta) / ((float)motor.ticksPerCm);
-        float distRight = ((float)rightDelta) / ((float)motor.ticksPerCm);
-        float distOdometry = (distLeft + distRight) / 2.0;
-        
+      float distLeft = ((float)leftDelta) / ((float)motor.ticksPerCm);
+      float distRight = ((float)rightDelta) / ((float)motor.ticksPerCm);
+      float distOdometry = (distLeft + distRight) / 2.0;
+
+      if (distGPS > 0)
+      {
         float estimatedTicksPerCm = (float)(leftDelta + rightDelta) / 2.0 / distGPS;
-        
+
         newTicksPerCm = 0.9 * newTicksPerCm + 0.1 * estimatedTicksPerCm;
-        Console.print("Updated Ticks per Cm: "); 
+        Console.print("Updated Ticks per Cm: ");
         Console.println(newTicksPerCm);
       }
-      // good fix signal received
-      undisturbedFix = true;
-    } else {
-      // any non-fix signal invalidates the measurement for one cycle
-      undisturbedFix = false;
     }
+    // good fix signal received
+    undisturbedFix = true;
+  }
+  else
+  {
+    // any non-fix signal invalidates the measurement for one cycle
+    undisturbedFix = false;
+  }
 }
 
 // compute robot state (x,y,delta)
@@ -348,7 +357,7 @@ void computeRobotState()
     else
     {
       // Test: continue to use odometry data if float
-      // further ideas: 
+      // further ideas:
       //  * store last fix values and allow up to x meters distance with odometry only  => does not work
       //  * update float position only if GPS distance below threshold and in reasonable distance to last fix point
       // // float
