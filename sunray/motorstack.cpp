@@ -38,7 +38,12 @@ MotorStack::pwm MotorStack::push(MotorStack::pwm cmd){
         MotorStack::pwm null { .left = 0, .right = 0, .timestamp = 0};
         return null;
     }
-    cmds[++top] = cmd;
+    // smart/compress push => if .left & .right are the same just update the timestamp
+    if(!isEmpty() && cmds[top].left == cmd.left && cmds[top].right == cmd.right){
+        cmds[top].timestamp = cmd.timestamp;
+    } else {
+        cmds[++top] = cmd;
+    }
     return cmd;
 }
 
