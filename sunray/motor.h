@@ -56,6 +56,9 @@ class Motor {
     unsigned long motorMowSpinUpTime;
     bool motorRecoveryState;    
     MotorStack lastPwmCommands; 
+    bool recoveryStart = true;
+    MotorStack::pwm lastStep;
+    MotorStack::pwm nextStep;
     void begin();
     void run();      
     void test();

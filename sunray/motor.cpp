@@ -724,17 +724,19 @@ void Motor::plot(){
 
 void Motor::revert()
 {
-  bool start = true;
-  MotorStack::pwm lastStep;
-  while(!lastPwmCommands.isEmpty()){
-    if(start) {
-      // no real chance to replay the last step
-      MotorStack::pwm lastStep = lastPwmCommands.pop();
-      start = false;
-    }
-    MotorStack::pwm nextStep = lastPwmCommands.pop();
+  if(recoveryStart) {
+    // no real chance to replay the last step
+    lastStep = lastPwmCommands.pop();
+    // initialize nextStep to empty & immediate completion [0]
+    nextStep = { .left = 0, .right = 0, .timestamp = 0};
+    recoveryStart = false;
+  }
+  // check if we have a command left to proceed
+  if(!lastPwmCommands.isEmpty() && nextStep.timestamp < millis()){
+    nextStep = lastPwmCommands.pop();
     long deltaTime = nextStep.timestamp - lastStep.timestamp;
     long endTime = millis() +  deltaTime;
+    nextStep.timestamp = endTime;
     CONSOLE.print("MOTOR Reverting for ");
     CONSOLE.print(deltaTime);
     CONSOLE.print("ms; Left=");
@@ -742,9 +744,11 @@ void Motor::revert()
     CONSOLE.print("%; Right=");
     CONSOLE.print(-nextStep.left);
     CONSOLE.println("%");
-    while(endTime > millis()){
-      speedPWM(-nextStep.left, -nextStep.right, 0);
-    }
+    speedPWM(-nextStep.left, -nextStep.right, 0);
     lastStep = nextStep;
+  }
+  if(lastPwmCommands.isEmpty())
+  {
+    recoveryStart = true;
   }
 }

@@ -19,7 +19,7 @@ SFE_UBLOX_GPS configGPS; // used for f9p module configuration only
 UBLOX::UBLOX()
 {
   debug = false;
-  verbose = true;
+  verbose = false;
   useTCP = false;
   solutionTimeout = 0;
   #ifdef GPS_DUMP

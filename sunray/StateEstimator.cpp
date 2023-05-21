@@ -226,7 +226,7 @@ void estimateTicksPerCm()
   if (newTicksPerCm == -1.0)
     newTicksPerCm = motor.ticksPerCm;
   // store the last valid
-  if (gps.solution == SOL_FIXED)
+  if (gps.solution == SOL_FIXED && gps.groundSpeed > 0.1)
   {
     // skip this cycle if we had a disturbed signal
     if (undisturbedFix)
