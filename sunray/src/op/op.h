@@ -110,6 +110,7 @@ class MowOp: public Op {
   public:
     bool lastMapRoutingFailed;
     int mapRoutingFailedCounter;
+    int mapSkippedWaypoints;
     MowOp();
     virtual String name() override;
     virtual void begin() override;
@@ -213,6 +214,7 @@ class GpsRebootRecoveryOp: public Op {
 // wait for gps fix
 class GpsWaitFixOp: public Op {
   public:
+    unsigned long gpsReinitTime;
     virtual String name() override;
     virtual void begin() override;
     virtual void end() override;

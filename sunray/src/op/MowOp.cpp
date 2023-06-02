@@ -15,6 +15,7 @@
 MowOp::MowOp(){
     lastMapRoutingFailed = false;
     mapRoutingFailedCounter = 0;
+    mapSkippedWaypoints = 0;
 }
 
 String MowOp::name(){
@@ -62,11 +63,18 @@ void MowOp::begin(){
 
     if (routingFailed){
         lastMapRoutingFailed = true; 
-        mapRoutingFailedCounter++;    
-        if (mapRoutingFailedCounter > 60){
+        mapRoutingFailedCounter++;
+        // robustness: try skipping several waypoints before giving up
+        if(mapRoutingFailedCounter > 10 && mapSkippedWaypoints < 10) {
+            CONSOLE.println("error: > 10 routing errors! Skipping next waypoint.");
+            stateSensor = SENS_MAP_NO_ROUTE;
+            maps.skipNextMowingPoint();
+            mapSkippedWaypoints++;
+            mapRoutingFailedCounter = 0;
+        } else if (mapRoutingFailedCounter > 60){
             CONSOLE.println("error: too many map routing errors!");
             stateSensor = SENS_MAP_NO_ROUTE;
-            changeOp(errorOp);      
+            changeOp(errorOp);
         } else {    
             // permanent reboots in case of failed routing are no solution if we have a fix GPS signal
             if(gps.solution < 2){
