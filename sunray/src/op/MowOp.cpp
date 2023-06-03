@@ -65,8 +65,8 @@ void MowOp::begin(){
         lastMapRoutingFailed = true; 
         mapRoutingFailedCounter++;
         // robustness: try skipping several waypoints before giving up
-        if(mapRoutingFailedCounter > 10 && mapSkippedWaypoints < 10) {
-            CONSOLE.println("error: > 10 routing errors! Skipping next waypoint.");
+        if(mapRoutingFailedCounter > 2 && mapSkippedWaypoints < 10) {
+            CONSOLE.println("error: > 2 routing errors! Skipping next waypoint.");
             stateSensor = SENS_MAP_NO_ROUTE;
             maps.skipNextMowingPoint();
             mapSkippedWaypoints++;
