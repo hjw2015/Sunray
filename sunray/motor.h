@@ -7,7 +7,7 @@
 #define MOTOR_H
 
 #include "pid.h"
-#include "motorstack.h"
+#include "motorlifo.h"
 
 // selected motor
 enum MotorSelect {MOTOR_LEFT, MOTOR_RIGHT, MOTOR_MOW} ;
@@ -55,10 +55,10 @@ class Motor {
     float motorRightSenseLPNorm;
     unsigned long motorMowSpinUpTime;
     bool motorRecoveryState;    
-    MotorStack lastPwmCommands; 
+    MotorLifo lastPwmCommands; 
     bool recoveryStart = true;
-    MotorStack::pwm lastStep;
-    MotorStack::pwm nextStep;
+    MotorLifo::pwm lastStep;
+    MotorLifo::pwm nextStep;
     unsigned long recoveryNextAction;
     void begin();
     void run();      

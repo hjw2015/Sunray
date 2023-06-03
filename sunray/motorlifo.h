@@ -2,12 +2,12 @@
 // Copyright (c) 2013-2020 by HJ Wolff
 // Licensed GPLv3 for open source use
 
-#ifndef MOTORSTACK_H
-#define MOTORSTACK_H
+#ifndef MOTORLIFO_H
+#define MOTORLIFO_H
 
-#define MOTORSTACK_SIZE 100
+#define MOTORLIFO_SIZE 100
 
-class MotorStack {
+class MotorLifo {
     public:
         struct pwm {
         int left;
@@ -16,9 +16,9 @@ class MotorStack {
         };
     private:
         int top;
-        pwm cmds[MOTORSTACK_SIZE];
+        pwm cmds[MOTORLIFO_SIZE];
     public:
-        MotorStack();
+        MotorLifo();
         pwm push(pwm);
         pwm pop();
         bool isEmpty();

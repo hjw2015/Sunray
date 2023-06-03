@@ -8,7 +8,7 @@
 #include "helper.h"
 #include "robot.h"
 #include "Arduino.h"
-#include "motorstack.h"
+#include "motorlifo.h"
 
 void Motor::begin() {
 	pwmMax = 255;
@@ -549,7 +549,7 @@ void Motor::control(){
   speedPWM(motorLeftPWMCurr, motorRightPWMCurr, motorMowPWMCurr);
   
   // store the next operation for reverting (max. 5 sec)
-  struct MotorStack::pwm p = { .left = motorLeftPWMCurr, .right = motorRightPWMCurr, .timestamp=millis() };
+  struct MotorLifo::pwm p = { .left = motorLeftPWMCurr, .right = motorRightPWMCurr, .timestamp=millis() };
   int stackSize = lastPwmCommands.size();
   lastPwmCommands.push(p);
   if( stackSize != lastPwmCommands.size() && lastPwmCommands.size() > 1) {
