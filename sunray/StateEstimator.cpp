@@ -247,10 +247,15 @@ void estimateTicksPerCm()
       if (distGPS > 0)
       {
         float estimatedTicksPerCm = (float)(leftDelta + rightDelta) / 2.0 / distGPS;
-
-        newTicksPerCm = 0.9 * newTicksPerCm + 0.1 * estimatedTicksPerCm;
-        Console.print("Updated Ticks per Cm: ");
-        Console.println(newTicksPerCm);
+        float k1TicksPerCm = newTicksPerCm;
+        newTicksPerCm = 0.95 * newTicksPerCm + 0.05 * estimatedTicksPerCm;
+        // report only relevant changes
+        if( abs(k1TicksPerCm - newTicksPerCm) > 1 && abs(newTicksPerCm - motor.ticksPerCm) > 5) {
+          Console.print("Updated Ticks per Cm: ");
+          Console.print(motor.ticksPerCm);
+          Console.print(" vs. new ");
+          Console.println(newTicksPerCm);
+        }
       }
     }
     // good fix signal received
