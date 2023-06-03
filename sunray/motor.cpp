@@ -550,9 +550,12 @@ void Motor::control(){
   
   // store the next operation for reverting (max. 5 sec)
   struct MotorStack::pwm p = { .left = motorLeftPWMCurr, .right = motorRightPWMCurr, .timestamp=millis() };
+  int stackSize = lastPwmCommands.size();
   lastPwmCommands.push(p);
-  CONSOLE.print("CmdStack length=");
-  CONSOLE.println(lastPwmCommands.size());
+  if( stackSize != lastPwmCommands.size()) {
+    CONSOLE.print("CmdStack length=");
+    CONSOLE.println(lastPwmCommands.size());
+  }
   /*if ((motorLeftPWMCurr != 0) || (motorRightPWMCurr != 0)){
     CONSOLE.print("PID curr=");
     CONSOLE.print(motorLeftRpmCurr);
