@@ -728,15 +728,17 @@ void Motor::revert()
     // no real chance to replay the last step
     lastStep = lastPwmCommands.pop();
     // initialize nextStep to empty & immediate completion [0]
-    nextStep = { .left = 0, .right = 0, .timestamp = 0};
+    recoveryNextAction = 0;
     recoveryStart = false;
   }
   // check if we have a command left to proceed
-  if(!lastPwmCommands.isEmpty() && nextStep.timestamp < millis()){
+  if(!lastPwmCommands.isEmpty() && recoveryNextAction < millis()){
     nextStep = lastPwmCommands.pop();
-    long deltaTime = nextStep.timestamp - lastStep.timestamp;
+    // we move back in time ;-)
+    long deltaTime = lastStep.timestamp - nextStep.timestamp;
+    deltaTime = deltaTime < 0 ? 0 : deltaTime;
     long endTime = millis() +  deltaTime;
-    nextStep.timestamp = endTime;
+    recoveryNextAction = endTime;
     CONSOLE.print("MOTOR Reverting for ");
     CONSOLE.print(deltaTime);
     CONSOLE.print("ms; Left=");
@@ -749,6 +751,7 @@ void Motor::revert()
   }
   if(lastPwmCommands.isEmpty())
   {
+    CONSOLE.println("MOTOR Stack empty.");
     recoveryStart = true;
   }
 }

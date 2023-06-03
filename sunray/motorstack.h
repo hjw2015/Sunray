@@ -12,7 +12,7 @@ class MotorStack {
         struct pwm {
         int left;
         int right;
-        long timestamp;
+        unsigned long timestamp;
         };
     private:
         int top;

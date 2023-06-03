@@ -59,6 +59,7 @@ class Motor {
     bool recoveryStart = true;
     MotorStack::pwm lastStep;
     MotorStack::pwm nextStep;
+    unsigned long recoveryNextAction;
     void begin();
     void run();      
     void test();
