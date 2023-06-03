@@ -552,7 +552,7 @@ void Motor::control(){
   struct MotorStack::pwm p = { .left = motorLeftPWMCurr, .right = motorRightPWMCurr, .timestamp=millis() };
   int stackSize = lastPwmCommands.size();
   lastPwmCommands.push(p);
-  if( stackSize != lastPwmCommands.size()) {
+  if( stackSize != lastPwmCommands.size() && lastPwmCommands.size() > 1) {
     CONSOLE.print("CmdStack length=");
     CONSOLE.println(lastPwmCommands.size());
   }
@@ -742,6 +742,10 @@ void Motor::revert()
     deltaTime = deltaTime < 0 ? 0 : deltaTime;
     long endTime = millis() +  deltaTime;
     recoveryNextAction = endTime;
+    CONSOLE.print("MOTOR Last step: ");
+    CONSOLE.println(lastStep.timestamp);
+    CONSOLE.print("MOTOR Next step: ");
+    CONSOLE.println(nextStep.timestamp);
     CONSOLE.print("MOTOR Reverting for ");
     CONSOLE.print(deltaTime);
     CONSOLE.print("ms; Left=");
