@@ -4,3 +4,4 @@
 /.vscode/**
 alfred/version.cpp
 sunray/version.cpp
+alfred/sunray
