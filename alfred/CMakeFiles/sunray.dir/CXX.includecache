@@ -1,0 +1,14 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/hans-jorg/github/Sunray/sunray/version.cpp
+version.h
+/home/hans-jorg/github/Sunray/sunray/version.h
+
+/home/hans-jorg/github/Sunray/sunray/version.h
+

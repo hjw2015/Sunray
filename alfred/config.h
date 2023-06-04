@@ -44,6 +44,7 @@ Also, you may choose the serial port below for serial monitor output (CONSOLE).
    
 */
 
+#include "version.h"
 
 
 #ifdef __cplusplus

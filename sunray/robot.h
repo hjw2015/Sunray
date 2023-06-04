@@ -35,8 +35,6 @@
 #include "PubSubClient.h"
 
 
-#define VER "Sunray,1.0.303-hjw1"
-
 // operation types
 enum OperationType {
       OP_IDLE,      // idle

@@ -1,0 +1,3 @@
+/home/hans-jorg/github/Sunray/alfred/CMakeFiles/rebuild_cache.dir
+/home/hans-jorg/github/Sunray/alfred/CMakeFiles/edit_cache.dir
+/home/hans-jorg/github/Sunray/alfred/CMakeFiles/sunray.dir
