@@ -5,3 +5,5 @@
 alfred/version.cpp
 sunray/version.cpp
 alfred/sunray
+alfred/version.cpp
+alfred/CMakeFiles/**
