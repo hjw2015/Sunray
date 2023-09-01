@@ -150,6 +150,7 @@ class DockOp: public Op {
     unsigned long dockReasonRainAutoStartTime;
     bool lastMapRoutingFailed;
     int mapRoutingFailedCounter;
+    int dockingAttempts;
     DockOp();
     virtual String name() override;
     virtual void begin() override;

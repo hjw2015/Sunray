@@ -380,6 +380,8 @@ Also, you may choose the serial port below for serial monitor output (CONSOLE).
 
 #define UNDOCK_IGNORE_GPS_DISTANCE 2 // set distance (m) from dock to ignore gps while undocking
 
+#define DOCK_MAX_TRY 3    // set a value for max docking attempts before giving up => leads to very messy structure in front of docking station otherwise; manual invervention needed then.
+
 // ---- path tracking -----------------------------------
 
 // below this robot-to-target distance (m) a target is considered as reached
@@ -389,7 +391,7 @@ Also, you may choose the serial port below for serial monitor output (CONSOLE).
 #define STANLEY_CONTROL_P_NORMAL  1.1   // 3.0 for path tracking control (angular gain) when mowing
 #define STANLEY_CONTROL_K_NORMAL  0.1   // 1.0 for path tracking control (lateral gain) when mowing
 
-#define STANLEY_CONTROL_P_SLOW    1.1   // 1.0 for path tracking control (angular gain) when docking tracking
+#define STANLEY_CONTROL_P_SLOW    0.6   // reducing from 1.1 to 0.6 to test if docking is w/o swaying [2023-08]
 #define STANLEY_CONTROL_K_SLOW    0.1   // 0.2 for path tracking control (lateral gain) when docking tracking
 
 

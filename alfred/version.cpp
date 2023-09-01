@@ -1,3 +1,3 @@
 #include "version.h"
-const char *ccVersionIncGitHash = "Sunray,1.0.303-hjw-88f5910";
+const char *ccVersionIncGitHash = "Sunray,1.0.303-hjw-7fac087";
 

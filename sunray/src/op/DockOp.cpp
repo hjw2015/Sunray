@@ -27,7 +27,8 @@ String DockOp::name(){
 void DockOp::begin(){
   bool error = false;
   bool routingFailed = false;      
-  
+  dockingAttempts = 0;
+
   motor.setLinearAngularSpeed(0,0);
   motor.setMowState(false);                
 
@@ -84,12 +85,17 @@ void DockOp::end(){
 
 void DockOp::run(){
     if (!detectObstacle()){
+      dockingAttempts++;
         detectObstacleRotation();                              
     }
     // line tracking
     trackLine(true);       
     detectSensorMalfunction(); 
     battery.resetIdle();
+    if(dockingAttempts >= DOCK_MAX_TRY){
+      CONSOLE.println("DockOp::tooManyAttempts");
+      changeOp(errorOp, false);
+    }
 }
 
 
