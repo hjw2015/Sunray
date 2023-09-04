@@ -85,7 +85,6 @@ void DockOp::end(){
 
 void DockOp::run(){
     if (!detectObstacle()){
-      dockingAttempts++;
         detectObstacleRotation();                              
     }
     // line tracking
@@ -94,7 +93,8 @@ void DockOp::run(){
     battery.resetIdle();
     if(dockingAttempts >= DOCK_MAX_TRY){
       CONSOLE.println("DockOp::tooManyAttempts");
-      changeOp(errorOp, false);
+      dockingAttempts = 0;
+      changeOp(errorOp, false);      
     }
 }
 
@@ -103,6 +103,7 @@ void DockOp::onTargetReached(){
     CONSOLE.println("DockOp::onTargetReached");
     if (maps.wayMode == WAY_MOW){
       maps.clearObstacles(); // clear obstacles if target reached
+      dockingAttempts = 0;
       motorErrorCounter = 0; // reset motor error counter if target reached
       stateSensor = SENS_NONE; // clear last triggered sensor
     }
@@ -136,11 +137,13 @@ void DockOp::onKidnapped(bool state){
 void DockOp::onObstacleRotation(){
     CONSOLE.println("error: rotation error due to obstacle!");    
     statMowObstacles++;   
+    dockingAttempts++;
     stateSensor = SENS_OBSTACLE;
     changeOp(errorOp);    
 }
 
 void DockOp::onObstacle(){
+    dockingAttempts++;
     if (battery.chargerConnected()) {
       CONSOLE.println("triggerObstacle: ignoring, because charger connected");      
       return;
@@ -162,7 +165,8 @@ void DockOp::onObstacle(){
     }
 }
 
-void DockOp::onChargerConnected(){            
+void DockOp::onChargerConnected(){         
+  dockingAttempts = 0;  
   changeOp(chargeOp);
 }
 
