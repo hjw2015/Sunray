@@ -114,7 +114,7 @@ Also, you may choose the serial port below for serial monitor output (CONSOLE).
 // more info here: https://wiki.ardumower.de/index.php?title=Ardumower_Chassis_%27mountain_mod%27)
 #define FREEWHEEL_IS_AT_BACKSIDE   false   // default Ardumower: true   (change to false, if your freewheel is at frontside) - this is used for obstacle avoidance
 #define WHEEL_BASE_CM         39         // wheel-to-wheel distance (cm)        
-#define WHEEL_DIAMETER        205        // wheel diameter (mm)                 
+#define WHEEL_DIAMETER        220        // wheel diameter (mm)                 
 #define MOWER_SIZE            60         // mower / chassis size / length in cm
 
 //#define ENABLE_ODOMETRY_ERROR_DETECTION  true    // use this to detect odometry erros
@@ -147,9 +147,9 @@ Also, you may choose the serial port below for serial monitor output (CONSOLE).
 //#define MOTOR_DRIVER_BRUSHLESS_GEARS_DRV8308  1   // uncomment for brushless DRV8308 driver and gear/traction motors 
 //#define MOTOR_DRIVER_BRUSHLESS_GEARS_A4931  1   // uncomment for brushless A4931 driver and gear/traction motors
 
-#define MOTOR_FAULT_CURRENT 3.0    // gear motors fault current (amps)
+#define MOTOR_FAULT_CURRENT 3.5    // gear motors fault current (amps)
 #define MOTOR_TOO_LOW_CURRENT 0.005   // gear motor too low current (amps), set to zero (0) to disable
-#define MOTOR_OVERLOAD_CURRENT 1.2    // gear motors overload current (amps)
+#define MOTOR_OVERLOAD_CURRENT 1.5    // gear motors overload current (amps)
 
 //#define USE_LINEAR_SPEED_RAMP  true      // use a speed ramp for the linear speed
 #define USE_LINEAR_SPEED_RAMP  false      // do not use a speed ramp 
