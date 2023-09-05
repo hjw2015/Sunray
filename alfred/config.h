@@ -146,8 +146,8 @@ Also, you may choose the serial port below for serial monitor output (CONSOLE).
 //#define MOTOR_DRIVER_BRUSHLESS_MOW_A4931  1    // uncomment for brushless A3931 driver and mowing motor
 //#define MOTOR_DRIVER_BRUSHLESS_GEARS_DRV8308  1   // uncomment for brushless DRV8308 driver and gear/traction motors 
 //#define MOTOR_DRIVER_BRUSHLESS_GEARS_A4931  1   // uncomment for brushless A4931 driver and gear/traction motors
-// laut meinen Messungen seit 08/2022 bei nassem Untergrund und höherem Gras auf jeden Fall mehr als 3.5A
-#define MOTOR_FAULT_CURRENT 4.0    // gear motors fault current (amps)
+// laut meinen Messungen seit 08/2022 bei nassem Untergrund und höherem Gras auf jeden Fall mehr als 4.0A
+#define MOTOR_FAULT_CURRENT 4.5    // gear motors fault current (amps)
 #define MOTOR_TOO_LOW_CURRENT 0.005   // gear motor too low current (amps), set to zero (0) to disable
 #define MOTOR_OVERLOAD_CURRENT 2.0    // gear motors overload current (amps)
 
