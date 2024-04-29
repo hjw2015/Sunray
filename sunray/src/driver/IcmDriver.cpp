@@ -94,10 +94,10 @@ bool IcmDriver::isDataAvail(){
             yaw = atan2(t3, t4);
 
             // quaternion
-            quatW = q3;
-            quatX = q0;
-            quatY = q1;
-            quatZ = q2;
+            // quatW = q3;
+            // quatX = q0;
+            // quatY = q1;
+            // quatZ = q2;
         }
         return true;
     }

@@ -609,6 +609,33 @@ home/hans-jorg/github/Sunray/sunray/ioboard.cpp.s:
 	$(MAKE) -f CMakeFiles/sunray.dir/build.make CMakeFiles/sunray.dir/home/hans-jorg/github/Sunray/sunray/ioboard.cpp.s
 .PHONY : home/hans-jorg/github/Sunray/sunray/ioboard.cpp.s
 
+home/hans-jorg/github/Sunray/sunray/linuxcan.o: home/hans-jorg/github/Sunray/sunray/linuxcan.cpp.o
+
+.PHONY : home/hans-jorg/github/Sunray/sunray/linuxcan.o
+
+# target to build an object file
+home/hans-jorg/github/Sunray/sunray/linuxcan.cpp.o:
+	$(MAKE) -f CMakeFiles/sunray.dir/build.make CMakeFiles/sunray.dir/home/hans-jorg/github/Sunray/sunray/linuxcan.cpp.o
+.PHONY : home/hans-jorg/github/Sunray/sunray/linuxcan.cpp.o
+
+home/hans-jorg/github/Sunray/sunray/linuxcan.i: home/hans-jorg/github/Sunray/sunray/linuxcan.cpp.i
+
+.PHONY : home/hans-jorg/github/Sunray/sunray/linuxcan.i
+
+# target to preprocess a source file
+home/hans-jorg/github/Sunray/sunray/linuxcan.cpp.i:
+	$(MAKE) -f CMakeFiles/sunray.dir/build.make CMakeFiles/sunray.dir/home/hans-jorg/github/Sunray/sunray/linuxcan.cpp.i
+.PHONY : home/hans-jorg/github/Sunray/sunray/linuxcan.cpp.i
+
+home/hans-jorg/github/Sunray/sunray/linuxcan.s: home/hans-jorg/github/Sunray/sunray/linuxcan.cpp.s
+
+.PHONY : home/hans-jorg/github/Sunray/sunray/linuxcan.s
+
+# target to generate assembly for a file
+home/hans-jorg/github/Sunray/sunray/linuxcan.cpp.s:
+	$(MAKE) -f CMakeFiles/sunray.dir/build.make CMakeFiles/sunray.dir/home/hans-jorg/github/Sunray/sunray/linuxcan.cpp.s
+.PHONY : home/hans-jorg/github/Sunray/sunray/linuxcan.cpp.s
+
 home/hans-jorg/github/Sunray/sunray/map.o: home/hans-jorg/github/Sunray/sunray/map.cpp.o
 
 .PHONY : home/hans-jorg/github/Sunray/sunray/map.o
@@ -933,6 +960,60 @@ home/hans-jorg/github/Sunray/sunray/src/driver/BnoDriver.cpp.s:
 	$(MAKE) -f CMakeFiles/sunray.dir/build.make CMakeFiles/sunray.dir/home/hans-jorg/github/Sunray/sunray/src/driver/BnoDriver.cpp.s
 .PHONY : home/hans-jorg/github/Sunray/sunray/src/driver/BnoDriver.cpp.s
 
+home/hans-jorg/github/Sunray/sunray/src/driver/CanRobotDriver.o: home/hans-jorg/github/Sunray/sunray/src/driver/CanRobotDriver.cpp.o
+
+.PHONY : home/hans-jorg/github/Sunray/sunray/src/driver/CanRobotDriver.o
+
+# target to build an object file
+home/hans-jorg/github/Sunray/sunray/src/driver/CanRobotDriver.cpp.o:
+	$(MAKE) -f CMakeFiles/sunray.dir/build.make CMakeFiles/sunray.dir/home/hans-jorg/github/Sunray/sunray/src/driver/CanRobotDriver.cpp.o
+.PHONY : home/hans-jorg/github/Sunray/sunray/src/driver/CanRobotDriver.cpp.o
+
+home/hans-jorg/github/Sunray/sunray/src/driver/CanRobotDriver.i: home/hans-jorg/github/Sunray/sunray/src/driver/CanRobotDriver.cpp.i
+
+.PHONY : home/hans-jorg/github/Sunray/sunray/src/driver/CanRobotDriver.i
+
+# target to preprocess a source file
+home/hans-jorg/github/Sunray/sunray/src/driver/CanRobotDriver.cpp.i:
+	$(MAKE) -f CMakeFiles/sunray.dir/build.make CMakeFiles/sunray.dir/home/hans-jorg/github/Sunray/sunray/src/driver/CanRobotDriver.cpp.i
+.PHONY : home/hans-jorg/github/Sunray/sunray/src/driver/CanRobotDriver.cpp.i
+
+home/hans-jorg/github/Sunray/sunray/src/driver/CanRobotDriver.s: home/hans-jorg/github/Sunray/sunray/src/driver/CanRobotDriver.cpp.s
+
+.PHONY : home/hans-jorg/github/Sunray/sunray/src/driver/CanRobotDriver.s
+
+# target to generate assembly for a file
+home/hans-jorg/github/Sunray/sunray/src/driver/CanRobotDriver.cpp.s:
+	$(MAKE) -f CMakeFiles/sunray.dir/build.make CMakeFiles/sunray.dir/home/hans-jorg/github/Sunray/sunray/src/driver/CanRobotDriver.cpp.s
+.PHONY : home/hans-jorg/github/Sunray/sunray/src/driver/CanRobotDriver.cpp.s
+
+home/hans-jorg/github/Sunray/sunray/src/driver/IcmDriver.o: home/hans-jorg/github/Sunray/sunray/src/driver/IcmDriver.cpp.o
+
+.PHONY : home/hans-jorg/github/Sunray/sunray/src/driver/IcmDriver.o
+
+# target to build an object file
+home/hans-jorg/github/Sunray/sunray/src/driver/IcmDriver.cpp.o:
+	$(MAKE) -f CMakeFiles/sunray.dir/build.make CMakeFiles/sunray.dir/home/hans-jorg/github/Sunray/sunray/src/driver/IcmDriver.cpp.o
+.PHONY : home/hans-jorg/github/Sunray/sunray/src/driver/IcmDriver.cpp.o
+
+home/hans-jorg/github/Sunray/sunray/src/driver/IcmDriver.i: home/hans-jorg/github/Sunray/sunray/src/driver/IcmDriver.cpp.i
+
+.PHONY : home/hans-jorg/github/Sunray/sunray/src/driver/IcmDriver.i
+
+# target to preprocess a source file
+home/hans-jorg/github/Sunray/sunray/src/driver/IcmDriver.cpp.i:
+	$(MAKE) -f CMakeFiles/sunray.dir/build.make CMakeFiles/sunray.dir/home/hans-jorg/github/Sunray/sunray/src/driver/IcmDriver.cpp.i
+.PHONY : home/hans-jorg/github/Sunray/sunray/src/driver/IcmDriver.cpp.i
+
+home/hans-jorg/github/Sunray/sunray/src/driver/IcmDriver.s: home/hans-jorg/github/Sunray/sunray/src/driver/IcmDriver.cpp.s
+
+.PHONY : home/hans-jorg/github/Sunray/sunray/src/driver/IcmDriver.s
+
+# target to generate assembly for a file
+home/hans-jorg/github/Sunray/sunray/src/driver/IcmDriver.cpp.s:
+	$(MAKE) -f CMakeFiles/sunray.dir/build.make CMakeFiles/sunray.dir/home/hans-jorg/github/Sunray/sunray/src/driver/IcmDriver.cpp.s
+.PHONY : home/hans-jorg/github/Sunray/sunray/src/driver/IcmDriver.cpp.s
+
 home/hans-jorg/github/Sunray/sunray/src/driver/MpuDriver.o: home/hans-jorg/github/Sunray/sunray/src/driver/MpuDriver.cpp.o
 
 .PHONY : home/hans-jorg/github/Sunray/sunray/src/driver/MpuDriver.o
@@ -1013,6 +1094,60 @@ home/hans-jorg/github/Sunray/sunray/src/driver/SimRobotDriver.s: home/hans-jorg/
 home/hans-jorg/github/Sunray/sunray/src/driver/SimRobotDriver.cpp.s:
 	$(MAKE) -f CMakeFiles/sunray.dir/build.make CMakeFiles/sunray.dir/home/hans-jorg/github/Sunray/sunray/src/driver/SimRobotDriver.cpp.s
 .PHONY : home/hans-jorg/github/Sunray/sunray/src/driver/SimRobotDriver.cpp.s
+
+home/hans-jorg/github/Sunray/sunray/src/icm/ICM_20948.o: home/hans-jorg/github/Sunray/sunray/src/icm/ICM_20948.cpp.o
+
+.PHONY : home/hans-jorg/github/Sunray/sunray/src/icm/ICM_20948.o
+
+# target to build an object file
+home/hans-jorg/github/Sunray/sunray/src/icm/ICM_20948.cpp.o:
+	$(MAKE) -f CMakeFiles/sunray.dir/build.make CMakeFiles/sunray.dir/home/hans-jorg/github/Sunray/sunray/src/icm/ICM_20948.cpp.o
+.PHONY : home/hans-jorg/github/Sunray/sunray/src/icm/ICM_20948.cpp.o
+
+home/hans-jorg/github/Sunray/sunray/src/icm/ICM_20948.i: home/hans-jorg/github/Sunray/sunray/src/icm/ICM_20948.cpp.i
+
+.PHONY : home/hans-jorg/github/Sunray/sunray/src/icm/ICM_20948.i
+
+# target to preprocess a source file
+home/hans-jorg/github/Sunray/sunray/src/icm/ICM_20948.cpp.i:
+	$(MAKE) -f CMakeFiles/sunray.dir/build.make CMakeFiles/sunray.dir/home/hans-jorg/github/Sunray/sunray/src/icm/ICM_20948.cpp.i
+.PHONY : home/hans-jorg/github/Sunray/sunray/src/icm/ICM_20948.cpp.i
+
+home/hans-jorg/github/Sunray/sunray/src/icm/ICM_20948.s: home/hans-jorg/github/Sunray/sunray/src/icm/ICM_20948.cpp.s
+
+.PHONY : home/hans-jorg/github/Sunray/sunray/src/icm/ICM_20948.s
+
+# target to generate assembly for a file
+home/hans-jorg/github/Sunray/sunray/src/icm/ICM_20948.cpp.s:
+	$(MAKE) -f CMakeFiles/sunray.dir/build.make CMakeFiles/sunray.dir/home/hans-jorg/github/Sunray/sunray/src/icm/ICM_20948.cpp.s
+.PHONY : home/hans-jorg/github/Sunray/sunray/src/icm/ICM_20948.cpp.s
+
+home/hans-jorg/github/Sunray/sunray/src/icm/util/ICM_20948_C.o: home/hans-jorg/github/Sunray/sunray/src/icm/util/ICM_20948_C.c.o
+
+.PHONY : home/hans-jorg/github/Sunray/sunray/src/icm/util/ICM_20948_C.o
+
+# target to build an object file
+home/hans-jorg/github/Sunray/sunray/src/icm/util/ICM_20948_C.c.o:
+	$(MAKE) -f CMakeFiles/sunray.dir/build.make CMakeFiles/sunray.dir/home/hans-jorg/github/Sunray/sunray/src/icm/util/ICM_20948_C.c.o
+.PHONY : home/hans-jorg/github/Sunray/sunray/src/icm/util/ICM_20948_C.c.o
+
+home/hans-jorg/github/Sunray/sunray/src/icm/util/ICM_20948_C.i: home/hans-jorg/github/Sunray/sunray/src/icm/util/ICM_20948_C.c.i
+
+.PHONY : home/hans-jorg/github/Sunray/sunray/src/icm/util/ICM_20948_C.i
+
+# target to preprocess a source file
+home/hans-jorg/github/Sunray/sunray/src/icm/util/ICM_20948_C.c.i:
+	$(MAKE) -f CMakeFiles/sunray.dir/build.make CMakeFiles/sunray.dir/home/hans-jorg/github/Sunray/sunray/src/icm/util/ICM_20948_C.c.i
+.PHONY : home/hans-jorg/github/Sunray/sunray/src/icm/util/ICM_20948_C.c.i
+
+home/hans-jorg/github/Sunray/sunray/src/icm/util/ICM_20948_C.s: home/hans-jorg/github/Sunray/sunray/src/icm/util/ICM_20948_C.c.s
+
+.PHONY : home/hans-jorg/github/Sunray/sunray/src/icm/util/ICM_20948_C.s
+
+# target to generate assembly for a file
+home/hans-jorg/github/Sunray/sunray/src/icm/util/ICM_20948_C.c.s:
+	$(MAKE) -f CMakeFiles/sunray.dir/build.make CMakeFiles/sunray.dir/home/hans-jorg/github/Sunray/sunray/src/icm/util/ICM_20948_C.c.s
+.PHONY : home/hans-jorg/github/Sunray/sunray/src/icm/util/ICM_20948_C.c.s
 
 home/hans-jorg/github/Sunray/sunray/src/linux/linux.o: home/hans-jorg/github/Sunray/sunray/src/linux/linux.cpp.o
 
@@ -3021,6 +3156,9 @@ help:
 	@echo "... home/hans-jorg/github/Sunray/sunray/ioboard.o"
 	@echo "... home/hans-jorg/github/Sunray/sunray/ioboard.i"
 	@echo "... home/hans-jorg/github/Sunray/sunray/ioboard.s"
+	@echo "... home/hans-jorg/github/Sunray/sunray/linuxcan.o"
+	@echo "... home/hans-jorg/github/Sunray/sunray/linuxcan.i"
+	@echo "... home/hans-jorg/github/Sunray/sunray/linuxcan.s"
 	@echo "... home/hans-jorg/github/Sunray/sunray/map.o"
 	@echo "... home/hans-jorg/github/Sunray/sunray/map.i"
 	@echo "... home/hans-jorg/github/Sunray/sunray/map.s"
@@ -3057,6 +3195,12 @@ help:
 	@echo "... home/hans-jorg/github/Sunray/sunray/src/driver/BnoDriver.o"
 	@echo "... home/hans-jorg/github/Sunray/sunray/src/driver/BnoDriver.i"
 	@echo "... home/hans-jorg/github/Sunray/sunray/src/driver/BnoDriver.s"
+	@echo "... home/hans-jorg/github/Sunray/sunray/src/driver/CanRobotDriver.o"
+	@echo "... home/hans-jorg/github/Sunray/sunray/src/driver/CanRobotDriver.i"
+	@echo "... home/hans-jorg/github/Sunray/sunray/src/driver/CanRobotDriver.s"
+	@echo "... home/hans-jorg/github/Sunray/sunray/src/driver/IcmDriver.o"
+	@echo "... home/hans-jorg/github/Sunray/sunray/src/driver/IcmDriver.i"
+	@echo "... home/hans-jorg/github/Sunray/sunray/src/driver/IcmDriver.s"
 	@echo "... home/hans-jorg/github/Sunray/sunray/src/driver/MpuDriver.o"
 	@echo "... home/hans-jorg/github/Sunray/sunray/src/driver/MpuDriver.i"
 	@echo "... home/hans-jorg/github/Sunray/sunray/src/driver/MpuDriver.s"
@@ -3066,6 +3210,12 @@ help:
 	@echo "... home/hans-jorg/github/Sunray/sunray/src/driver/SimRobotDriver.o"
 	@echo "... home/hans-jorg/github/Sunray/sunray/src/driver/SimRobotDriver.i"
 	@echo "... home/hans-jorg/github/Sunray/sunray/src/driver/SimRobotDriver.s"
+	@echo "... home/hans-jorg/github/Sunray/sunray/src/icm/ICM_20948.o"
+	@echo "... home/hans-jorg/github/Sunray/sunray/src/icm/ICM_20948.i"
+	@echo "... home/hans-jorg/github/Sunray/sunray/src/icm/ICM_20948.s"
+	@echo "... home/hans-jorg/github/Sunray/sunray/src/icm/util/ICM_20948_C.o"
+	@echo "... home/hans-jorg/github/Sunray/sunray/src/icm/util/ICM_20948_C.i"
+	@echo "... home/hans-jorg/github/Sunray/sunray/src/icm/util/ICM_20948_C.s"
 	@echo "... home/hans-jorg/github/Sunray/sunray/src/linux/linux.o"
 	@echo "... home/hans-jorg/github/Sunray/sunray/src/linux/linux.i"
 	@echo "... home/hans-jorg/github/Sunray/sunray/src/linux/linux.s"

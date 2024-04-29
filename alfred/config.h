@@ -152,9 +152,10 @@ Also, you may choose the serial port below for serial monitor output (CONSOLE).
 //#define MOTOR_DRIVER_BRUSHLESS_GEARS_DRV8308  1   // uncomment for brushless DRV8308 driver and gear/traction motors 
 //#define MOTOR_DRIVER_BRUSHLESS_GEARS_A4931  1   // uncomment for brushless A4931 driver and gear/traction motors
 // laut meinen Messungen seit 08/2022 bei nassem Untergrund und höherem Gras auf jeden Fall mehr als 4.0A
+// => aktuell eher in Richtung 4+A gesamt mit Spikes und etwas höherem Gras
 #define MOTOR_FAULT_CURRENT 4.5    // gear motors fault current (amps)
 #define MOTOR_TOO_LOW_CURRENT 0.005   // gear motor too low current (amps), set to zero (0) to disable
-#define MOTOR_OVERLOAD_CURRENT 2.0    // gear motors overload current (amps)
+#define MOTOR_OVERLOAD_CURRENT 3.0    // gear motors overload current (amps) 
 
 //#define USE_LINEAR_SPEED_RAMP  true      // use a speed ramp for the linear speed
 #define USE_LINEAR_SPEED_RAMP  false      // do not use a speed ramp 
@@ -178,7 +179,7 @@ Also, you may choose the serial port below for serial monitor output (CONSOLE).
 
 #define MOW_FAULT_CURRENT 8.0       // mowing motor fault current (amps)
 #define MOW_TOO_LOW_CURRENT 0.005   // mowing motor too low current (amps) , set to zero (0) to disable
-#define MOW_OVERLOAD_CURRENT 2.5    // mowing motor overload current (amps)
+#define MOW_OVERLOAD_CURRENT 3.0    // mowing motor overload current (amps) => aktuell eher in Richtung 4+A gesamt mit Spikes und etwas höherem Gras
 
 // should the direction of mowing motor toggle each start? (yes: true, no: false)
 #define MOW_TOGGLE_DIR       true
@@ -297,7 +298,7 @@ Also, you may choose the serial port below for serial monitor output (CONSOLE).
 // Alfred according to code: 7x https://www.akkuteile.de/samsung-inr-18650-15m-1500mah-3-7v-powertoolzelle_100699_2585
 // Entladeschlussspannung: 2,5V
 
-#define GO_HOME_VOLTAGE   20.0  // Schlussspannung plus 10% Puffer: ~ 7*2.5*1.1
+#define GO_HOME_VOLTAGE   22.0  // Schlussspannung plus 10% Puffer: ~ 7*2.5*1.1; ab 22V bricht die Spannung stark weg [28.4.24]
 // The battery will charge if both battery voltage is below that value and charging current is above that value.
 #define BAT_FULL_VOLTAGE  29.4  // start mowing again at this voltage
 #define BAT_FULL_CURRENT  -0.1   // start mowing again below this charging current (amps)
