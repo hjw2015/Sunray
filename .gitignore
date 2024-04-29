@@ -4,3 +4,4 @@
 /.vscode/**
 alfred/sunray
 alfred/CMakeFiles/**
+alfred/CMakeCache.txt
