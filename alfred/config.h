@@ -57,7 +57,8 @@ Also, you may choose the serial port below for serial monitor output (CONSOLE).
   #endif
 #endif
 
-#define DRV_SERIAL_ROBOT  1
+#define DRV_SERIAL_ROBOT  1     // Linux (Alfred)
+//#define DRV_CAN_ROBOT  1     // Linux (owlRobotics platform)
 //#define DRV_ARDUMOWER     1   // keep this for Ardumower
 //#define DRV_SIM_ROBOT     1   // simulation
 
@@ -78,6 +79,9 @@ Also, you may choose the serial port below for serial monitor output (CONSOLE).
 //#define MPU9250   // also choose this for MPU9255
 //#define BNO055
 #define MPU_ADDR 0x69  // I2C address (0x68 if AD0=LOW, 0x69 if AD0=HIGH)
+
+// imu fifo rate (Hz)
+#define IMU_FIFO_RATE 5
 
 // should the mower turn off if IMU is tilt over? (yes: uncomment line, no: comment line)
 #define ENABLE_TILT_DETECTION  1
@@ -137,6 +141,7 @@ Also, you may choose the serial port below for serial monitor output (CONSOLE).
 //#define TICKS_PER_REVOLUTION  1300 / 2    // 1194/2  odometry ticks per wheel revolution
 
 #define TICKS_PER_REVOLUTION  320     // odometry ticks per wheel revolution (RM24)
+//#define TICKS_PER_REVOLUTION  975     // odometry ticks per wheel revolution (owlRobotics platform)
 
 
 // ----- gear motors --------------------------------------------------
@@ -602,3 +607,16 @@ Also, you may choose the serial port below for serial monitor output (CONSOLE).
   #define MPU9250   // just to make mpu driver happy to compile something
 #endif
 
+#ifdef ICM20948
+  #define MPU9250   // just to make mpu driver happy to compile something
+#endif
+
+#ifdef __cplusplus
+  #include "udpserial.h"
+  #include "sdserial.h"
+  #include "src/agcm4/adafruit_grand_central.h"
+  #ifdef __linux__
+    #include "src/linux/linux.h"    
+    #include <Console.h>
+  #endif
+#endif
