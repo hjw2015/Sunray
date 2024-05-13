@@ -1,2 +1,5 @@
 alfred/build
 build/.cmake
+alfred/CMakeFiles
+alfred/cmake_install.cmake
+alfred/Makefile
