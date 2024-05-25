@@ -61,6 +61,7 @@ void Motor::begin() {
   #endif
 
   motorError = false;
+  motorErrorCnt = 0;
   recoverMotorFault = false;
   recoverMotorFaultCounter = 0;
   nextRecoverMotorFaultTime = 0;
@@ -453,6 +454,7 @@ bool Motor::checkMowRpmFault(){
   //CONSOLE.println(motorMowRpmCurrLP);
   if (ENABLE_RPM_FAULT_DETECTION){
     if  ( (abs(motorMowPWMCurr) > 100) && (abs(motorMowPWMCurrLP) > 100) && (abs(motorMowRpmCurrLP) < 10.0)) {        
+      motorErrorCnt++;
       CONSOLE.print("ERROR: mow motor, average rpm too low: pwm=");
       CONSOLE.print(motorMowPWMCurr);
       CONSOLE.print("  pwmLP=");      
@@ -460,8 +462,15 @@ bool Motor::checkMowRpmFault(){
       CONSOLE.print("  rpmLP=");
       CONSOLE.print(motorMowRpmCurrLP);
       CONSOLE.println("  (NOTE: choose ENABLE_RPM_FAULT_DETECTION=false in config.h, if your mowing motor has no rpm sensor!)");
+    } else {
+      motorErrorCnt = 0;
+    }
+
+    if(motorErrorCnt > 5){
+      CONSOLE.print("ERROR: mow motor limit reached - stopping motor.");
       return true;
     }
+
   }  
   return false;
 }

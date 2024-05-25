@@ -238,8 +238,10 @@ void MowOp::onGpsFixTimeout(){
 #else
         if (!maps.isUndocking()){
 #endif
-            stateSensor = SENS_GPS_FIX_TIMEOUT;
-            changeOp(gpsWaitFixOp, true);
+            if(gps.accuracy > 0.05) {   // allow mowing with minimal deviation e.g. 5cm
+                stateSensor = SENS_GPS_FIX_TIMEOUT;
+                changeOp(gpsWaitFixOp, true);
+            }
         }
     }
 }

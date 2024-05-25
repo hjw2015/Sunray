@@ -26,6 +26,7 @@ class Motor {
     bool motorLeftSwapDir;
     bool motorRightSwapDir;
     bool motorError;
+    int  motorErrorCnt;
     bool motorLeftOverload; 
     bool motorRightOverload; 
     bool motorMowOverload; 
