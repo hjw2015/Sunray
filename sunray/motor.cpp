@@ -467,7 +467,7 @@ bool Motor::checkMowRpmFault(){
     }
 
     if(motorErrorCnt > 5){
-      CONSOLE.print("ERROR: mow motor limit reached - stopping motor.");
+      CONSOLE.print("ERROR: mow motor rpm limit reached - stopping motor.");
       return true;
     }
 
