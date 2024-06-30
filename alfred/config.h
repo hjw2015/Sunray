@@ -76,9 +76,10 @@ Also, you may choose the serial port below for serial monitor output (CONSOLE).
 
 // --------- lift sensor (only Alfred mower) ---------------------------------------------
 // should the lift sensor be enabled? (yes: uncomment line, no: comment line)
-#define ENABLE_LIFT_DETECTION  1
+// Defekt der Vorderräder => Dauer LIFT Detect (30.06.24) => TODO: Uncomment nach Wechsel der Räder!!
+//#define ENABLE_LIFT_DETECTION  1
 // should the lift sensor be used for obstacle avoidance (if not, mower will simply go into error if lifted)
-#define LIFT_OBSTACLE_AVOIDANCE 1  
+//#define LIFT_OBSTACLE_AVOIDANCE 1  
 
 // ------- SD card map load/resume and logging ---------------------------------
 // all serial console output can be logged to a (FAT32 formatted) SD card
@@ -167,7 +168,7 @@ Also, you may choose the serial port below for serial monitor output (CONSOLE).
 // certain time (normally a few seconds) and the mower will try again and set a virtual obstacle after too many tries
 // On the other hand, the overload detection will detect situations the fault signal cannot detect: slightly higher current for a longer time 
 
-#define MAX_MOW_PWM 230  // use this to permanently reduce mowing motor power (255=max)
+#define MAX_MOW_PWM 255  // use this to permanently reduce mowing motor power (255=max)
 
 #define MOW_FAULT_CURRENT 8.0       // mowing motor fault current (amps)
 #define MOW_TOO_LOW_CURRENT 0.005   // mowing motor too low current (amps) , set to zero (0) to disable
