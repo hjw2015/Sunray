@@ -20,6 +20,10 @@ unsigned long rightPressedOnDelay = 0;
 unsigned long bumperStayActivTime = 0;    // duration, the bumper stays triggered
 unsigned long lastCallBumperObstacle = 0; // last call for bumper.obstacle
 
+bool bumperDebugReportLeft = false;
+unsigned int bumperDebugReducerLeft = 0;
+bool bumperDebugReportRight = false;
+unsigned int bumperDebugReducerRight = 0;
 
 void Bumper::begin(){
   bumperDriver.begin();
@@ -63,11 +67,22 @@ void Bumper::run() {
     } else outputLeftPressed = outputRightPressed = false;
 
     
-    if(bumperRight) {          
-      CONSOLE.println("BUMPER error - right");
+    if(bumperRight) {
+      bumperDebugReportRight = true;
+      if(bumperDebugReducerRight++ % 500 == 0) {
+        CONSOLE.println("BUMPER error - right");
+      }
+    } else {
+      if(bumperDebugReportRight) {
+        CONSOLE.println("BUMPER error - right healed");
+        bumperDebugReportRight = false;
+      }
     }
-    if(bumperLeft) {          
-      CONSOLE.println("BUMPER error - left");
+    if(bumperLeft) {
+      bumperDebugReportLeft = true;
+      if(bumperDebugReducerLeft++ % 500 == 0) {
+        CONSOLE.println("BUMPER error - left");
+      }
     }
 
     // check if bumper stays triggered for a long time periode (maybe blocked)
