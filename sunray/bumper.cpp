@@ -42,16 +42,18 @@ void Bumper::run() {
     FIXME: code does not seem to work properly in all cases
     https://github.com/Ardumower/Sunray/pull/103#issuecomment-1215526140
     IDEA: do not check bumper errors here, check them (like for the lift-sensor) in 'src/EscapeReverseOp.cpp/run'
-
+*/
     bool bumperLeft   = false;
     bool bumperRight  = false;
 
     // delay for the bumper inputs
     if (inputLeftPressed){
+      if(millis() < leftPressedOnDelay) leftPressedOnDelay = millis();
       if (millis() >= (leftPressedOnDelay + BUMPER_TRIGGER_DELAY)) bumperLeft = true;
     } else leftPressedOnDelay = millis();
 
     if (inputRightPressed){
+      if(millis() < rightPressedOnDelay) rightPressedOnDelay = millis();
       if (millis() >= (rightPressedOnDelay + BUMPER_TRIGGER_DELAY)) bumperRight = true;
     } else rightPressedOnDelay = millis();
 
@@ -61,10 +63,17 @@ void Bumper::run() {
     } else outputLeftPressed = outputRightPressed = false;
 
     
+    if(bumperRight) {          
+      CONSOLE.println("BUMPER error - right");
+    }
+    if(bumperLeft) {          
+      CONSOLE.println("BUMPER error - left");
+    }
+
     // check if bumper stays triggered for a long time periode (maybe blocked)
     if ((bumperRight || bumperLeft) && (BUMPER_MAX_TRIGGER_TIME > 0)){
       if ((abs(motor.linearSpeedSet) >= 0.05) || (abs(motor.angularSpeedSet) >= 0.05)) { // if no movement, bumperStayActivTime paused
-        bumperStayActivTime = bumperStayActivTime + (millis()-lastCallBumperObstacle);
+        bumperStayActivTime = bumperStayActivTime + max(0,(millis()-lastCallBumperObstacle)); // overflow protection
       }
       if ((bumperStayActivTime) > (BUMPER_MAX_TRIGGER_TIME * 1000)){ // maximum trigger time reached -> set error
         if (stateOp != OP_ERROR){
@@ -74,7 +83,7 @@ void Bumper::run() {
         }
       }
     } else bumperStayActivTime = 0;
-    */
+    
     lastCallBumperObstacle = millis();
   }
 }
