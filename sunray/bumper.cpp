@@ -70,7 +70,8 @@ void Bumper::run() {
     if(bumperRight) {
       bumperDebugReportRight = true;
       if(bumperDebugReducerRight++ % 500 == 0) {
-        CONSOLE.println("BUMPER error - right");
+        CONSOLE.print("BUMPER error - right: ");
+        CONSOLE.println(bumperDebugReducerRight);
       }
     } else {
       if(bumperDebugReportRight) {
@@ -82,7 +83,8 @@ void Bumper::run() {
     if(bumperLeft) {
       bumperDebugReportLeft = true;
       if(bumperDebugReducerLeft++ % 500 == 0) {
-        CONSOLE.println("BUMPER error - left");
+        CONSOLE.print("BUMPER error - left: ");
+        CONSOLE.println(bumperDebugReducerLeft);
       }
     } else {
       if(bumperDebugReportLeft) {
