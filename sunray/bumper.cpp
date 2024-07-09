@@ -76,12 +76,19 @@ void Bumper::run() {
       if(bumperDebugReportRight) {
         CONSOLE.println("BUMPER error - right healed");
         bumperDebugReportRight = false;
+        bumperDebugReducerRight = 0;
       }
     }
     if(bumperLeft) {
       bumperDebugReportLeft = true;
       if(bumperDebugReducerLeft++ % 500 == 0) {
         CONSOLE.println("BUMPER error - left");
+      }
+    } else {
+      if(bumperDebugReportLeft) {
+        CONSOLE.println("BUMPER error - left healed");
+        bumperDebugReportLeft = false;
+        bumperDebugReducerLeft = 0;
       }
     }
 
