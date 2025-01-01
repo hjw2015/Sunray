@@ -77,9 +77,9 @@ Also, you may choose the serial port below for serial monitor output (CONSOLE).
 // --------- lift sensor (only Alfred mower) ---------------------------------------------
 // should the lift sensor be enabled? (yes: uncomment line, no: comment line)
 // Defekt der Vorderräder => Dauer LIFT Detect (30.06.24) => TODO: Uncomment nach Wechsel der Räder!!
-//#define ENABLE_LIFT_DETECTION  1
+#define ENABLE_LIFT_DETECTION  1
 // should the lift sensor be used for obstacle avoidance (if not, mower will simply go into error if lifted)
-//#define LIFT_OBSTACLE_AVOIDANCE 1  
+#define LIFT_OBSTACLE_AVOIDANCE 1  
 
 // ------- SD card map load/resume and logging ---------------------------------
 // all serial console output can be logged to a (FAT32 formatted) SD card
