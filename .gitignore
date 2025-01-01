@@ -5,3 +5,5 @@ alfred/cmake_install.cmake
 alfred/Makefile
 alfred/sunray
 heatmap/
+alfred/CMakeCache.*
+alfred/CMakeCache.txt
