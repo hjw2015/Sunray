@@ -1,14 +1,9 @@
-<<<<<<< HEAD
-alfred/build
+alfred/build/**
 build/.cmake
-alfred/CMakeFiles
+alfred/CMakeFiles/**
 alfred/cmake_install.cmake
 alfred/Makefile
 alfred/sunray
 heatmap/
 alfred/CMakeCache.*
-=======
-alfred/build/**
-alfred/CMakeFiles/**
->>>>>>> 6b6aaba7816f262d79b7f3493e2dba13b3111ceb
 alfred/CMakeCache.txt

@@ -250,11 +250,7 @@ Also, you may choose the serial port below for serial monitor output (CONSOLE).
 // robot1/gps/sol       (current gps solution as text)
 // robot1/gps/pos       (current gps position as text)
 //#define ENABLE_MQTT  true                           // start MQTT client?  (true for yes, false for no)
-<<<<<<< HEAD
-#define ENABLE_MQTT true
-=======
 #define ENABLE_MQTT  true
->>>>>>> 6b6aaba7816f262d79b7f3493e2dba13b3111ceb
 #define MQTT_TOPIC_PREFIX  "alfred1"                 // the MQTT topic prefix for your robot 
 #define MQTT_SERVER  "192.168.166.4"                 // your MQTT broker IP or hostname (e.g. "broker.mqtt-dashboard.com")
 #define MQTT_PORT  30169
@@ -288,11 +284,7 @@ Also, you may choose the serial port below for serial monitor output (CONSOLE).
 // see Wiki on how to install bumperduino or freewheel sensor:
 // https://wiki.ardumower.de/index.php?title=Bumper_sensor
 // https://wiki.ardumower.de/index.php?title=Free_wheel_sensor
-<<<<<<< HEAD
-// #define BUMPER_ENABLE true
-=======
 //#define BUMPER_ENABLE true
->>>>>>> 6b6aaba7816f262d79b7f3493e2dba13b3111ceb
 #define BUMPER_ENABLE false
 #define BUMPER_DEADTIME 1000  		// linear motion dead-time (ms) after bumper is allowed to trigger
 #define BUMPER_TRIGGER_DELAY  200		// bumper must be active for (ms) to trigger
@@ -313,14 +305,10 @@ Also, you may choose the serial port below for serial monitor output (CONSOLE).
 //#define CURRENT_FACTOR 1.98   // PCB1.4 (non-bridged INA169, max. 2.5A)
 //#define CURRENT_FACTOR 2.941  // PCB1.4 (bridged INA169, max. 5A)
 
-<<<<<<< HEAD
 // Alfred according to code: 7x https://www.akkuteile.de/samsung-inr-18650-15m-1500mah-3-7v-powertoolzelle_100699_2585
 // Entladeschlussspannung: 2,5V
 
 #define GO_HOME_VOLTAGE   22.0  // Schlussspannung plus 20% Puffer: ~ 7*2.5*1.1 => 21V
-=======
-#define GO_HOME_VOLTAGE   22.5  // start going to dock below this voltage
->>>>>>> 6b6aaba7816f262d79b7f3493e2dba13b3111ceb
 // The battery will charge if both battery voltage is below that value and charging current is above that value.
 #define BAT_FULL_VOLTAGE  29.4  // start mowing again at this voltage
 #define BAT_FULL_CURRENT  -0.1   // start mowing again below this charging current (amps)

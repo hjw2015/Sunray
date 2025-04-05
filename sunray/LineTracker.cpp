@@ -203,7 +203,6 @@ void trackLine(bool runControl){
     }           
   }     
 
-<<<<<<< HEAD
   if ((gps.solution == SOL_FIXED) || (gps.solution == SOL_FLOAT)){        
     if (abs(linear) > 0.06) {
       if ((millis() > linearMotionStartTime + 5000) && (stateGroundSpeed < 0.03) && !motor.motorRecoveryState){
@@ -214,21 +213,6 @@ void trackLine(bool runControl){
           statMowGPSNoSpeedCounter++;
           triggerObstacle();
           return;
-=======
-  if (stateLocalizationMode == LOC_GPS){
-    if  ((gps.solution == SOL_FIXED) || (gps.solution == SOL_FLOAT)){        
-      if (abs(linear) > 0.06) {
-        if ((millis() > linearMotionStartTime + 5000) && (stateGroundSpeed < 0.03)){
-          // if in linear motion and not enough ground speed => obstacle
-          //if ( (GPS_SPEED_DETECTION) && (!maps.isUndocking()) ) { 
-          if (GPS_SPEED_DETECTION && !motor.motorRecoveryState) {         
-            CONSOLE.println("gps no speed => obstacle!");
-            statMowGPSNoSpeedCounter++;
-            Logger.event(EVT_NO_GPS_SPEED_OBSTACLE);
-            triggerObstacle();
-            return;
-          }
->>>>>>> 6b6aaba7816f262d79b7f3493e2dba13b3111ceb
         }
       }  
     } else {
