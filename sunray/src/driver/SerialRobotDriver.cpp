@@ -415,8 +415,11 @@ void SerialRobotDriver::processResponse(bool checkCrc){
         CONSOLE.print(",");
         CONSOLE.print(expectedCrc,HEX);
         CONSOLE.println();
+        mcuCRCError = true;
         return;  
-      }      
+      } else {
+        mcuCRCError = false;
+      }
     } else {
       #ifdef DEBUG_SERIAL_ROBOT
         CONSOLE.print("SerialRobot resp:");
