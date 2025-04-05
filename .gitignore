@@ -1,1 +1,3 @@
 alfred/build/**
+alfred/CMakeFiles/**
+alfred/CMakeCache.txt
