@@ -4,5 +4,5 @@
 
 ## install new sunray executable ##
 sudo systemctl stop sunray
-cp sunray ~/sunray_install/
+cp build/sunray ~/sunray_install/
 sudo systemctl start sunray

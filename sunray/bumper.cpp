@@ -94,6 +94,8 @@ void Bumper::run() {
       }
     }
 
+    outputLeftPressed = outputRightPressed = false;
+
     // check if bumper stays triggered for a long time periode (maybe blocked)
     if ((bumperRight || bumperLeft) && (BUMPER_MAX_TRIGGER_TIME > 0)){
       if ((abs(motor.linearSpeedSet) >= 0.05) || (abs(motor.angularSpeedSet) >= 0.05)) { // if no movement, bumperStayActivTime paused
