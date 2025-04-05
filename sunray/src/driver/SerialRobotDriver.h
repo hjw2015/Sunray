@@ -91,6 +91,7 @@ class SerialMotorDriver: public MotorDriver {
     SerialMotorDriver(SerialRobotDriver &sr);
     void begin() override;
     void run() override;
+    void setMowHeight(int mowHeightMillimeter) override;
     void setMotorPwm(int leftPwm, int rightPwm, int mowPwm) override;
     void getMotorFaults(bool &leftFault, bool &rightFault, bool &mowFault) override;
     void resetMotorFaults()  override;
@@ -128,6 +129,7 @@ class SerialBumperDriver: public BumperDriver {
     SerialBumperDriver(SerialRobotDriver &sr);
     void begin() override;
     void run() override;
+    bool nearObstacle() override;
     bool obstacle() override;
     bool getLeftBumper() override;
     bool getRightBumper() override;

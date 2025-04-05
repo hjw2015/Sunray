@@ -9,6 +9,7 @@
 #include "mqtt.h"
 #include "httpserver.h"
 #include "ble.h"
+#include "events.h"
 
 #ifdef __linux__
   #include <BridgeClient.h>
@@ -161,7 +162,9 @@ void cmdControl(){
       } else if (counter == 8){
           if (intValue >= 0) sonar.enabled = (intValue == 1);
       } else if (counter == 9){
-         if (intValue >= 0) motor.setMowMaxPwm(intValue);
+          if (intValue >= 0) motor.setMowMaxPwm(intValue);
+      } else if (counter == 10){
+          if (intValue >= 0) motor.setMowHeightMillimeter(intValue);
       }
       counter++;
       lastCommaIdx = idx;
@@ -272,6 +275,7 @@ void cmdTimetable(){
     stateSensor = SENS_MEM_OVERFLOW;
     setOperation(OP_ERROR);
   } else {
+    Logger.event(EVT_USER_UPLOAD_TIME_TABLE);
     saveState();
   }
 }
@@ -448,10 +452,22 @@ void cmdVersion(){
   s += F(",");
   s += encryptChallenge;
   s += F(",");
-  s += BOARD;
+  String board(BOARD);
+  #ifdef __linux__
+    Process p;
+    board = "Linux";
+    // returns: Sinovoip_Bananapi_M4, Raspberry Pi 5, etc.
+    p.runShellCommand("cat /sys/firmware/devicetree/base/model 2>/dev/null");        
+	  String boardAdd = p.readString();    
+    if (boardAdd != "") board += " " + boardAdd;
+    //board += getCPUArchitecture();
+  #endif
+  s += board;
   s += F(",");
   #ifdef DRV_SERIAL_ROBOT
     s += "SR";
+  #elif DRV_CAN_ROBOT
+    s += "CR";
   #elif DRV_ARDUMOWER
     s += "AM";
   #else 
@@ -473,12 +489,14 @@ void cmdVersion(){
   CONSOLE.print(" encryptChallenge=");  
   CONSOLE.println(encryptChallenge);
   cmdAnswer(s);
+  Logger.event(EVT_APP_CONNECTED);
 }
 
 // request add obstacle
 void cmdObstacle(){
   String s = F("O");
   cmdAnswer(s);  
+  Logger.event(EVT_TRIGGERED_OBSTACLE);
   triggerObstacle();  
 }
 
@@ -509,8 +527,9 @@ void cmdTriggerWatchdog(){
   cmdAnswer(s);  
   setOperation(OP_IDLE);
   #ifdef __linux__
+    Logger.event(EVT_SYSTEM_RESTARTING);
     Process p;
-    p.runShellCommand("reboot");    
+    p.runShellCommand("sleep 3; reboot");    
   #else
     triggerWatchdog = true;  
   #endif
@@ -521,6 +540,7 @@ void cmdGNSSReboot(){
   String s = F("Y2");
   cmdAnswer(s);  
   CONSOLE.println("GNNS reboot");
+  Logger.event(EVT_GPS_RESTARTED);    
   gps.reboot();
 }
 
@@ -529,6 +549,7 @@ void cmdSwitchOffRobot(){
   String s = F("Y3");
   cmdAnswer(s);  
   setOperation(OP_IDLE);
+  Logger.event(EVT_SYSTEM_SHUTTING_DOWN);
   battery.switchOff();
 }
 

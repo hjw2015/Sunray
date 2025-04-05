@@ -390,6 +390,10 @@ void AmMotorDriver::run(){
 }
 
 
+void AmMotorDriver::setMowHeight(int mowHeightMillimeter){
+}
+
+
 // brushed/brushless motor driver
 //(8-bit PWM=255, 10-bit PWM=1023)
 // example logic:
@@ -657,6 +661,10 @@ void AmBumperDriver::begin(){
 void AmBumperDriver::getTriggeredBumper(bool &leftBumper, bool &rightBumper){
   leftBumper = leftPressed;
   rightBumper = rightPressed;
+}
+
+bool AmBumperDriver::nearObstacle(){
+  return false;
 }
 
 bool AmBumperDriver::obstacle(){

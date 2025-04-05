@@ -50,9 +50,13 @@ Also, you may choose the serial port below for serial monitor output (CONSOLE).
 //#define DRV_ARDUMOWER     1   // keep this for Ardumower
 //#define DRV_SIM_ROBOT     1   // simulation
 
+// if compiling for ROS, specify robot launch file (.launch) for robot-specific ROS launch (if not running in ROS, this option will not be used )
+#define ROS_LAUNCH_FILE "alfred"
+
 // ------- Bluetooth4.0/BLE module -----------------------------------
 // see Wiki on how to install the BLE module and configure the jumpers:
 // https://wiki.ardumower.de/index.php?title=Ardumower_Sunray#Bluetooth_BLE_UART_module
+#define BLE_NAME      "Alfred" // Bluetooth Low Energy (BLE) name to advertise
 #define ENABLE_PASS   1        // comment out to disable password authentication
 #define PASS          123456   // choose password for WiFi/BLE communication (NOTE: has to match the connection password in the App!)
 
@@ -168,7 +172,14 @@ Also, you may choose the serial port below for serial monitor output (CONSOLE).
 // certain time (normally a few seconds) and the mower will try again and set a virtual obstacle after too many tries
 // On the other hand, the overload detection will detect situations the fault signal cannot detect: slightly higher current for a longer time 
 
+<<<<<<< HEAD
 #define MAX_MOW_PWM 255  // use this to permanently reduce mowing motor power (255=max)
+=======
+#define MOW_ADJUST_HEIGHT  false   // can the mowing height be adjusted by an additional motor?
+
+// #define MAX_MOW_RPM  1900   // use this to set max RPM (note: requires mowing motor with rpm control!) 
+//#define MAX_MOW_PWM 200  // use this to permanently reduce mowing motor power (255=max)
+>>>>>>> 6b6aaba7816f262d79b7f3493e2dba13b3111ceb
 
 #define MOW_FAULT_CURRENT 8.0       // mowing motor fault current (amps)
 #define MOW_TOO_LOW_CURRENT 0.005   // mowing motor too low current (amps) , set to zero (0) to disable
@@ -186,8 +197,8 @@ Also, you may choose the serial port below for serial monitor output (CONSOLE).
 #define ENABLE_FAULT_DETECTION  true
 //#define ENABLE_FAULT_DETECTION  false       // use this if you keep getting 'motor error'
 
-#define ENABLE_RPM_FAULT_DETECTION  true     // use mow rpm signal to detect a motor fault (requires mowing motor with rpm output!)
-//#define ENABLE_RPM_FAULT_DETECTION  false     // do not use mow rpm signal to detect a motor fault
+//#define ENABLE_RPM_FAULT_DETECTION  true     // use mow rpm signal to detect a motor fault (requires mowing motor with rpm output!)
+#define ENABLE_RPM_FAULT_DETECTION  false     // do not use mow rpm signal to detect a motor fault
 
 // should the robot trigger obstacle avoidance on motor errors if motor recovery failed?
 #define ENABLE_FAULT_OBSTACLE_AVOIDANCE true  
@@ -239,7 +250,11 @@ Also, you may choose the serial port below for serial monitor output (CONSOLE).
 // robot1/gps/sol       (current gps solution as text)
 // robot1/gps/pos       (current gps position as text)
 //#define ENABLE_MQTT  true                           // start MQTT client?  (true for yes, false for no)
+<<<<<<< HEAD
 #define ENABLE_MQTT true
+=======
+#define ENABLE_MQTT  true
+>>>>>>> 6b6aaba7816f262d79b7f3493e2dba13b3111ceb
 #define MQTT_TOPIC_PREFIX  "alfred1"                 // the MQTT topic prefix for your robot 
 #define MQTT_SERVER  "192.168.166.4"                 // your MQTT broker IP or hostname (e.g. "broker.mqtt-dashboard.com")
 #define MQTT_PORT  30169
@@ -273,12 +288,19 @@ Also, you may choose the serial port below for serial monitor output (CONSOLE).
 // see Wiki on how to install bumperduino or freewheel sensor:
 // https://wiki.ardumower.de/index.php?title=Bumper_sensor
 // https://wiki.ardumower.de/index.php?title=Free_wheel_sensor
+<<<<<<< HEAD
 // #define BUMPER_ENABLE true
+=======
+//#define BUMPER_ENABLE true
+>>>>>>> 6b6aaba7816f262d79b7f3493e2dba13b3111ceb
 #define BUMPER_ENABLE false
 #define BUMPER_DEADTIME 1000  		// linear motion dead-time (ms) after bumper is allowed to trigger
 #define BUMPER_TRIGGER_DELAY  200		// bumper must be active for (ms) to trigger
 #define BUMPER_MAX_TRIGGER_TIME 30	// if bumpersensor stays permanent triggered mower will stop with bumper error (time in seconds; 0 = disabled)																																				  
 
+// ------ LiDAR bumper ------------------------------------------
+#define LIDAR_BUMPER_ENABLE false
+#define LIDAR_BUMPER_DEADTIME          1000   // linear motion dead-time (ms) after bumper is allowed to trigger
 
 // ----- battery charging current measurement (INA169) --------------
 // the Marotronics charger outputs max 1.5A 
@@ -291,10 +313,14 @@ Also, you may choose the serial port below for serial monitor output (CONSOLE).
 //#define CURRENT_FACTOR 1.98   // PCB1.4 (non-bridged INA169, max. 2.5A)
 //#define CURRENT_FACTOR 2.941  // PCB1.4 (bridged INA169, max. 5A)
 
+<<<<<<< HEAD
 // Alfred according to code: 7x https://www.akkuteile.de/samsung-inr-18650-15m-1500mah-3-7v-powertoolzelle_100699_2585
 // Entladeschlussspannung: 2,5V
 
 #define GO_HOME_VOLTAGE   22.0  // Schlussspannung plus 20% Puffer: ~ 7*2.5*1.1 => 21V
+=======
+#define GO_HOME_VOLTAGE   22.5  // start going to dock below this voltage
+>>>>>>> 6b6aaba7816f262d79b7f3493e2dba13b3111ceb
 // The battery will charge if both battery voltage is below that value and charging current is above that value.
 #define BAT_FULL_VOLTAGE  29.4  // start mowing again at this voltage
 #define BAT_FULL_CURRENT  -0.1   // start mowing again below this charging current (amps)
@@ -423,6 +449,7 @@ Also, you may choose the serial port below for serial monitor output (CONSOLE).
 
 //#define BUZZER_ENABLE 1 // un/comment to en/disable
 
+//#define TTS_PATH "../../tts/de/"    // path for speakable events (.mp3 files) 
 
 // ------ experimental options  -------------------------
 
@@ -453,7 +480,6 @@ Also, you may choose the serial port below for serial monitor output (CONSOLE).
 #define CONSOLE_BAUDRATE    115200    // baudrate used for console
 //#define CONSOLE_BAUDRATE    921600  // baudrate used for console
 #define BLE_BAUDRATE    115200        // baudrate used for BLE
-#define BLE_NAME      "Ardumower"     // name for BLE module
 #define GPS_BAUDRATE  115200          // baudrate for GPS RTK module
 #define WIFI_BAUDRATE 115200          // baudrate for WIFI module
 #define ROBOT_BAUDRATE 19200         // baudrate for Linux serial robot (non-Ardumower)

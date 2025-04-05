@@ -39,7 +39,7 @@
 #include "timetable.h"
 
 
-#define VER "Sunray,1.0.322"
+#define VER "Sunray,1.0.324"
 
 // operation types
 enum OperationType {
@@ -162,6 +162,7 @@ extern Battery battery;
 extern BLEConfig bleConfig;
 extern Bumper bumper;
 extern Buzzer buzzer;
+extern LidarBumperDriver lidarBumper;
 extern Sonar sonar;
 extern VL53L0X tof;
 extern PinManager pinMan;
