@@ -1,0 +1,5 @@
+alfred/build/cmake_install.cmake
+alfred/build/CMakeCache.txt 
+alfred/build/CMakeFiles/**    
+alfred/build/sunray
+alfred/build/Makefile

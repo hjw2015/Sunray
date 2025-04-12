@@ -27,6 +27,7 @@ class SerialRobotDriver: public RobotDriver {
     unsigned long encoderTicksRight;
     unsigned long encoderTicksMow;
     bool mcuCommunicationLost;
+    bool mcuCRCError;
     bool motorFault;
     float batteryVoltage;
     float chargeVoltage;
