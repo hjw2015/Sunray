@@ -13,9 +13,9 @@
   #include <Process.h>
 #endif
 
+#ifdef ENABLE_EVENT_LOGGER  // Nur kompilieren, wenn ENABLE_EVENT_LOGGER definiert ist und auf 1 gesetzt ist
 
 EventLogger Logger;
-
 
 EventLogger::EventLogger()  {    
 }
@@ -246,6 +246,16 @@ void EventLogger::playMP3(String &filename) {
     #endif
 
 }
+
+#endif  // ENABLE_EVENT_LOGGER
+
+#ifndef ENABLE_EVENT_LOGGER
+class EventLogger {
+public:
+    void event(EventCode evt) {}
+    void event(EventCode evt, const String &additionalData) {}
+};
+#endif
 
 
 

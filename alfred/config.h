@@ -622,6 +622,8 @@ Also, you may choose the serial port below for serial monitor output (CONSOLE).
   #define MPU9250   // just to make mpu driver happy to compile something
 #endif
 
+#define ENABLE_EVENT_LOGGER 0  // 1 = aktivieren, 0 = deaktivieren
+
 #ifdef __cplusplus
   #include "udpserial.h"
   #include "sdserial.h"
