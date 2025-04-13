@@ -392,6 +392,10 @@ bool Motor::checkFault() {
     CONSOLE.println("Error: motor driver mow signaled fault");
     fault = true;
   }
+  if(motorDriver.serialRobot.mcuCRCError) {
+    CONSOLE.println("Error: motor driver CRC error");
+    fault = true;
+  }
   return fault;
 }
 

@@ -409,6 +409,7 @@ void SerialRobotDriver::processResponse(bool checkCrc){
         CONSOLE.print(",");
         CONSOLE.print(expectedCrc,HEX);
         CONSOLE.println();
+        mcuCRCError = true;
         return;  
       }      
     } else {
@@ -420,6 +421,7 @@ void SerialRobotDriver::processResponse(bool checkCrc){
       cmd = cmd.substring(0, idx);      
     }    
   }     
+  mcuCRCError = false;
   if (cmd[0] == 'M') motorResponse();
   if (cmd[0] == 'S') summaryResponse();
   if (cmd[0] == 'V') versionResponse();

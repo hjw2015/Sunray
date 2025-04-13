@@ -102,7 +102,7 @@ Also, you may choose the serial port below for serial monitor output (CONSOLE).
 // more info here: https://wiki.ardumower.de/index.php?title=Ardumower_Chassis_%27mountain_mod%27)
 #define FREEWHEEL_IS_AT_BACKSIDE   false   // default Ardumower: true   (change to false, if your freewheel is at frontside) - this is used for obstacle avoidance
 #define WHEEL_BASE_CM         39         // wheel-to-wheel distance (cm)        
-#define WHEEL_DIAMETER        205        // wheel diameter (mm)                 
+#define WHEEL_DIAMETER        220        // wheel diameter (mm)                 
 #define MOWER_SIZE            60         // mower / chassis size / length in cm
 
 //#define ENABLE_ODOMETRY_ERROR_DETECTION  true    // use this to detect odometry erros
@@ -262,8 +262,8 @@ Also, you may choose the serial port below for serial monitor output (CONSOLE).
 // see Wiki on how to install bumperduino or freewheel sensor:
 // https://wiki.ardumower.de/index.php?title=Bumper_sensor
 // https://wiki.ardumower.de/index.php?title=Free_wheel_sensor
-#define BUMPER_ENABLE true
-//#define BUMPER_ENABLE false
+//#define BUMPER_ENABLE true
+#define BUMPER_ENABLE false
 #define BUMPER_DEADTIME 1000  		// linear motion dead-time (ms) after bumper is allowed to trigger
 #define BUMPER_TRIGGER_DELAY  0		// bumper must be active for (ms) to trigger
 #define BUMPER_MAX_TRIGGER_TIME 30	// if bumpersensor stays permanent triggered mower will stop with bumper error (time in seconds; 0 = disabled)																																				  
