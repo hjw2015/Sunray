@@ -1122,13 +1122,13 @@ void run(){
   loopTime = millis();
 
   #ifdef __linux__    
-    if (psOutput == ""){
-      if(loopTimeMax > 500){
-        Process p;
-        p.runShellCommand("ps -eo pcpu,pid,user,args | sort -k 1 -r | head -3");
-        psOutput = p.readString();    
-      }
-    }
+    // if (psOutput == ""){
+    //   if(loopTimeMax > 500){
+    //     Process p;
+    //     p.runShellCommand("ps -eo pcpu,pid,user,args | sort -k 1 -r | head -3");
+    //     psOutput = p.readString();    
+    //   }
+    // }
   #endif
 
   if(millis() > loopTimeTimer + 10000){
