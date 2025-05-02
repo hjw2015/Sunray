@@ -32,6 +32,7 @@ float trackerDiffDelta = 0;
 bool stateKidnapped = false;
 bool printmotoroverload = false;
 bool trackerDiffDelta_positive = false;
+unsigned long checkTime = 0;
 
 int get_turn_direction_preference() {
   Point target = maps.targetPoint;
@@ -278,12 +279,24 @@ void trackLine(bool runControl){
   }     
 
   if ((gps.solution == SOL_FIXED) || (gps.solution == SOL_FLOAT)){        
-    if (abs(linear) > 0.06) {
-      if ((millis() > linearMotionStartTime + 5000) && (stateGroundSpeed < 0.03) && !motor.motorRecoveryState){
+    if (abs(linear) > 0.06) {      
+      
+      // give the motor a chance (5sec) to recover also speed before we detect an obstacle
+      if(motor.motorRecoveryState) {
+        checkTime = millis();
+      } else if(millis() > checkTime + 5000) {
+        // after the 5sec back to standard check
+        checkTime = linearMotionStartTime;
+      }
+      
+      if ((millis() > checkTime + 5000) && (stateGroundSpeed < 0.03)){
         // if in linear motion and not enough ground speed => obstacle if not motor recovery active
-        //if ( (GPS_SPEED_DETECTION) && (!maps.isUndocking()) ) { 
         if (GPS_SPEED_DETECTION) {         
           CONSOLE.println("gps no speed => obstacle!");
+          CONSOLE.print("stateGroundSpeed: ");
+          CONSOLE.print(stateGroundSpeed);
+          CONSOLE.print("gps.groundSpeed: ");
+          CONSOLE.print(gps.groundSpeed);
           triggerObstacle();
           return;
         }

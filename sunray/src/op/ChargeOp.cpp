@@ -139,6 +139,9 @@ void ChargeOp::onChargerConnected(){
         CONSOLE.println("ChargeOp: retryTouchDock succeeded");        
         motor.setLinearAngularSpeed(0, 0);
         retryTouchDock = false;
+    } else {
+        motor.stopImmediately(true); // do not use PID to get to stop 
+        motor.enableTractionMotors(false); // keep traction motors off (motor drivers tend to generate some incorrect encoder values when stopped while not turning)                 
     }
 }
 
